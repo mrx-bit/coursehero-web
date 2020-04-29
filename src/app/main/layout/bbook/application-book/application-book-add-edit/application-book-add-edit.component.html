@@ -1,0 +1,49 @@
+<div class="popup-card-width add-new-user" style="width: 100%!important;">
+    <mat-toolbar matDialogTitle class="mat-primary">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Редактировать заявку</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-dialog-content>
+        <mat-form-field class="mrgn-b-sm">
+            <input matInput type="text" [disabled]="true" [(ngModel)]="user.name" class="form-control"
+                   placeholder="Teacher">
+        </mat-form-field>
+        <mat-form-field class="mrgn-b-sm">
+            <input matInput type="text" [disabled]="true" [(ngModel)]="book.name" class="form-control" placeholder="Book">
+        </mat-form-field>
+        <!--<mat-form-field class="mrgn-b-sm">-->
+            <!--<input matInput type="text" [disabled]="true" [(ngModel)]="applicationBook.classRoomId" class="form-control"-->
+                   <!--placeholder="ClassRoom">-->
+        <!--</mat-form-field>-->
+        <mat-form-field class="mrgn-b-sm">
+            <textarea matInput type="text" [disabled]="true" [(ngModel)]="applicationBook.description" class="form-control"
+                      placeholder="Description"></textarea>
+        </mat-form-field>
+        <mat-form-field class="mrgn-b-sm">
+            <mat-select matInput placeholder="Дать доступ"
+                        [(ngModel)]="applicationBook.status"
+                        name="pageId"
+                        rows="5">
+                <mat-option [value]="'ACCEPT'">
+                    ДА
+                </mat-option>
+                <mat-option [value]="'DENIED'">
+                    НЕТ
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-dialog-content>
+
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+        <button
+                mat-button class="save-button"
+                (click)="matDialogRef.close([applicationBook])"
+                aria-label="SAVE">Save
+        </button>
+    </div>
+</div>

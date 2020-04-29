@@ -1,0 +1,28 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+<div style="margin: 10% 0">
+
+    <button class="createWordButton"
+            button mat-stroked-button color="primary" style="border: none;" disabled></button>
+    <button class="createWordButton"
+            button mat-stroked-button color="primary"
+            *ngFor="let number of all;let i = index"
+            (click)="setCheck(i,'all')">{{number}}
+    </button>
+    <br>
+    <button class="createWordButton"
+            button mat-stroked-button color="primary"
+            *ngFor="let number of all2;let i = index"
+            (click)="setCheck(i,'all2')">{{number}}
+    </button>
+</div>

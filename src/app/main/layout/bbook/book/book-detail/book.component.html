@@ -1,0 +1,109 @@
+<div id="book" class="page-layout simple left-sidebar inner-scroll">
+
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="book-left-sidebar-1" position="left" lockedOpen="gt-md">
+
+        <!-- SIDEBAR CONTENT -->
+        <div class="content" fusePerfectScrollbar>
+
+            <div class="steps">
+
+                <div class="step"
+                     *ngFor="let step of bookSteps; let i = index; let last = last; let first = first"
+                     (click)="gotoStep(i)"
+                     [ngClass]="{'current': currentStep === i, 'completed': currentStep > i, 'last': last, 'first': first}">
+                    <div class="index">
+                        <span>{{i + 1}}</span>
+                    </div>
+                    <div class="title">{{step.name}}</div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- / SIDEBAR CONTENT -->
+
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent p-24" fxLayout="row" fxLayoutAlign="start center">
+
+            <button mat-icon-button class="sidebar-toggle mr-16" fxHide.gt-md
+                    (click)="toggleSidebar('academy-book-left-sidebar-1')">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+            <button mat-icon-button class="mr-16" [routerLink]="'/bbook/books'">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+
+            <div>
+                <h2>{{book.title}}</h2>
+            </div>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT -->
+        <div id="book-content" class="content">
+            <div class="book-step" [@slideIn]="animationDirection">
+
+                <!--                    [innerHTML]="step.content"-->
+                <div id="book-step-content" class="book-step-content">
+                    <ng-container [ngSwitch]="currentStep">
+                        <ng-container *ngSwitchCase="0">
+                            <book-info [book]="book" [pageType]="status" (savedBook)="book = $event"></book-info>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="1">
+                            <book-page [book]="book"></book-page>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="2">
+                            <ms-content-crud [book]="book"></ms-content-crud>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="3">
+                            <aidar [book]="book"></aidar>
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            <p>Не найдена</p>
+                        </ng-container>
+                    </ng-container>
+                </div>
+
+            </div>
+        </div>
+        <!-- / CONTENT -->
+
+        <!--        <div class="step-navigation-left">-->
+
+        <!--            <button mat-fab class="previous mat-accent fuse-white-fg"-->
+        <!--                    (click)="gotoPreviousStep()"-->
+        <!--                    [disabled]="currentStep === 0"-->
+        <!--                    [fxHide]="currentStep === 0">-->
+        <!--                <mat-icon>chevron_left</mat-icon>-->
+        <!--            </button>-->
+        <!--        </div>-->
+
+        <!--        <div class="step-navigation-right">-->
+        <!--            <button mat-fab class="next mat-accent fuse-white-fg"-->
+        <!--                    (click)="gotoNextStep()"-->
+        <!--                    [disabled]="currentStep === totalSteps - 1"-->
+        <!--                    [fxHide]="currentStep === totalSteps - 1">-->
+        <!--                <mat-icon>chevron_right</mat-icon>-->
+        <!--            </button>-->
+
+        <!--            <button mat-fab class="done green-600"-->
+        <!--                    routerLink="/bbook/books"-->
+        <!--                    [disabled]="currentStep !== totalSteps - 1"-->
+        <!--                    [fxShow]="currentStep === totalSteps - 1">-->
+        <!--                <mat-icon>check</mat-icon>-->
+        <!--            </button>-->
+        <!--        </div>-->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

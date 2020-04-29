@@ -1,0 +1,37 @@
+<<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+<div style="margin: 100px 100px 20px; position: relative;">
+    <div class="main-container" #mainDiv style="height: 500px;">
+        <div *ngFor="let rect of syllables; let i = index" (click)="syllableClicked(rect)"
+             [ngStyle]="{'width': rect.w + 'px',
+                         'height': rect.h + 'px',
+                         'top': rect.x + 'px',
+                         'left': rect.y + 'px', 'background-color': rect.selected ? rect.color : '#2AA198'}"
+             class="rect syllable" style="z-index: 22222">
+            <div [ngStyle]="{'font-size': fullWidth * 0.015 + 'px'}" class="rect-child">
+                {{rect.value}}
+            </div>
+        </div>
+    </div>
+
+    <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: overlay;">
+        <ng-container *ngFor="let rect of syllableLines; let i = index">
+            {{rect.show}}
+            <line [attr.x1]="rect.centerX1" [attr.y1]="rect.centerY1" [attr.x2]="rect.centerX2"
+                  [attr.y2]="rect.centerY2"
+                  class="line"
+                  [ngStyle]="{'display': rect.show ? 'block' : 'none', 'stroke': rect.color}"></line>
+        </ng-container>
+    </svg>
+
+</div>

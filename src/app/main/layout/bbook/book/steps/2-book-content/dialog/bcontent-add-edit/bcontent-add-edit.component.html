@@ -1,0 +1,104 @@
+<div class="dialog-content-wrapper" *ngIf="linkForm">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0">
+        <form [formGroup]="linkForm">
+
+            <mat-form-field floatLabel="always" class="w-100-p">
+                <mat-label>Названия главы</mat-label>
+                <input matInput placeholder="Названия главы"
+                       name="title"
+                       required
+                       formControlName="title"/>
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always" class="w-100-p">
+                <mat-label>Описания главы</mat-label>
+                <textarea matInput placeholder="Описания главы"
+                          name="description"
+                          formControlName="description" rows="5">
+                </textarea>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px">
+                <mat-form-field appearance="outline" fxFlex="20">
+                    <input matInput style="display: none"/>
+                    <mat-checkbox formControlName="hasParent">Является подглавой</mat-checkbox>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" floatLabel="always" fxFlex="80">
+                    <mat-select formControlName="parentId" [disabled]="!linkForm.get('hasParent').value">
+                        <mat-option *ngFor="let link of linkList" [value]="link.id">
+                            {{link.title}}
+                        </mat-option>
+                    </mat-select>
+
+                    <mat-icon matSuffix class="secondary-text">ballot</mat-icon>
+                    <mat-error>Требуется глава книги!</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!--<div fxLayout="row" fxLayoutAlign="start center">-->
+            <!--<label fxFlex="20">-->
+            <!--<b>Активный</b>-->
+            <!--</label>-->
+            <!--<ui-switch fxFlex="80" formControlName="state"></ui-switch>-->
+            <!--</div>-->
+            <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                <mat-select formControlName="pageId" placeholder="Выберите страницу">
+                    <mat-select-search [formControl]="filterCtrl"></mat-select-search>
+                    <mat-option *ngFor="let topping of listPageFiltered" [value]="topping.id">{{topping.number}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+        <button *ngIf="action === 'edit'"
+                mat-button
+                class="mr-8"
+                (click)="matDialogRef.close(['delete',linkForm])"
+                aria-label="Delete"
+                matTooltip="Delete">
+            Удалить
+        </button>
+
+        <button *ngIf="action === 'edit'"
+                mat-button
+                class="mr-8"
+                (click)="matDialogRef.close(['disable',linkForm])"
+                aria-label="Disable"
+                matTooltip="Disable">
+            Деактивировать
+        </button>
+
+        <button *ngIf="action !== 'edit'"
+                mat-button
+                class="save-button"
+                (click)="matDialogRef.close(['add', linkForm])"
+                [disabled]="linkForm.invalid"
+                aria-label="ADD">
+            Добавить
+        </button>
+
+        <button *ngIf="action === 'edit'"
+                mat-button
+                class="save-button"
+                (click)="matDialogRef.close(['save', linkForm])"
+                [disabled]="linkForm.invalid"
+                aria-label="SAVE">
+            <p>Сохранить</p>
+        </button>
+
+    </div>
+</div>

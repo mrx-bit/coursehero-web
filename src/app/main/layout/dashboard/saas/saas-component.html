@@ -1,0 +1,99 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="logo">
+    <img src="assets/img/twitter.png" width="50" height="50">
+</div>
+
+<mat-card>
+    <mat-card-title fxLayoutAlign="center">
+        <!--Bauka buni bilmeim che za fignya ekenin-->
+        Name of Video
+    </mat-card-title>
+    <div class="video">
+        <div class="video-player-wrap">
+            <vg-player class="video-pl mrgn-all-md mrgn-b-lg">
+                <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                    <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+                    <source src="http://vjs.zencdn.net/v/oceans.ogg" type="video/ogg">
+                    <source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
+                </video>
+            </vg-player>
+        </div>
+    </div>
+    <!--Информация о видео-->
+
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Информация
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </mat-expansion-panel>
+    </mat-accordion>
+</mat-card>
+
+<!--Коментарий для видео-->
+
+<div class="feedback">
+    <div fxLayout="row wrap">
+        <div class="app-card" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100">
+            <mat-card>
+                <div>
+                    <mat-tab-group>
+                        <mat-tab label="All ({{feedbackList.length}})">
+                            <div class="gene-card-content">
+                                <div class="tab-content pad-y-sm" fxLayoutAlign="space-between start"
+                                     *ngFor="let list of feedbackList">
+                                    <div class="content" fxLayout="row wrap">
+                                        <div fxFlex.xl="76px" fxFlex.lg="76px" fxFlex.md="76px" fxFlex.sm="76px"
+                                             fxFlex.xs="100">
+                                            <div class="tab-image mrgn-b-sm mrgn-r-md">
+                                                <img class="img-circle" alt="tab image" src="{{list.image}}" width="60"
+                                                     height="60">
+                                            </div>
+                                        </div>
+                                        <div fxFlex.xl="calc(100% - 80px)" fxFlex.lg="calc(100% - 80px)"
+                                             fxFlex.md="calc(100% - 80px)" fxFlex.sm="calc(100% - 80px)"
+                                             fxFlex.xs="100">
+                                            <p class="mrgn-b-xs"><a href="" class="primary-text">{{list.name}}</a>
+                                                commented on <a href="javascript:void(0)" class="primary-text">{{list.comment}}</a>
+                                            </p>
+                                            <span class="mrgn-b-sm mat-icon-grey gene-block">{{list.time}}</span>
+                                            <ng-container *ngIf="list.type == 'comment' ; else elseBlock">
+                                                <h4 class="desc pad-all-sm">{{list.feedback}}</h4>
+                                            </ng-container>
+                                            <ng-template #elseBlock>
+                                                <h4 class="desc pad-all-sm">{{list.feedback}}</h4>
+                                            </ng-template>
+                                            <div class="mrgn-b-sm">
+                                                <mat-icon class="mrgn-r-sm">favorite</mat-icon>
+                                                <mat-icon>replye</mat-icon>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="icon" fxLayoutAlign="start start">
+                                        <button mat-icon-button>
+                                            <mat-icon>remove_red_eye</mat-icon>
+                                        </button>
+                                        <button mat-icon-button>
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+
+

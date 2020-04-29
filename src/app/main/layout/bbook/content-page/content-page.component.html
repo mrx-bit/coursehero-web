@@ -1,0 +1,244 @@
+<div class="card card-2" fxLayout="center center" *ngIf="book">
+    <div fxFlex="25"></div>
+    <div fxFlex="50">
+        <img [src]="((baseUrl + '/aidar/image/' + book.logoId | secure) | async)" alt="img13"/>
+    </div>
+    <div fxFlex="25"></div>
+
+</div>
+
+<div fxLayout="row" fxLayoutAlign="start start" *ngIf="snav.opened === true" style="width: 17%; margin-top: 4px; margin-left: 4px;">
+    <!--<button mat-icon-button style="min-width: 30px; width: 40px; height: 40px;" [ngClass]="'blue-800-bg'"-->
+            <!--(click)="search()">-->
+        <mat-icon style="font-size: 24px; margin-top: 4%; cursor: pointer;" (click)="search()">search</mat-icon>
+    <!--</button> &nbsp;-->
+    <mat-form-field floatLabel="always" class="w-100-p">
+        <mat-label>{{'Search' | translate}}</mat-label>
+        <input matInput placeholder="Search " (change)="check()" [(ngModel)]="searchString" name="searchString">
+    </mat-form-field>
+</div>
+
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+
+    <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+
+
+        <mat-sidenav class="sidenav" [opened]="true" #snav  [mode]="mobileQuery.matches ? 'over' : 'side'"
+                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+
+            <mat-nav-list class="nav-list">
+                <div *ngFor="let snavAidar of sidenavAidarList" fxLayout="row" style="margin-top: 1%;"
+                     fxLayoutAlign="start start">
+                    <div fxFlex="46">
+                        <vg-player *ngIf="snavAidar.aidarType === 'videoAidar' || snavAidar.aidarType === 'talkingPhoto' ||
+                                    snavAidar.aidarType === 'letter' || snavAidar.aidarType === 'writeWorld'">
+
+                            <video id="{{snavAidar.id}}" style="cursor: pointer;" (click)="redirect(snavAidar.id)"
+                                   [vgMedia]="media" #media controls>
+                                <source style="cursor: pointer;" (click)="redirect(snavAidar.id)"
+                                        [src]="((baseUrl + '/videos/test/' + snavAidar.videoAidar.videoId))">
+                            </video>
+                        </vg-player>
+
+                        <img class="aidarPicture" *ngIf="snavAidar.aidarType == 'training'" style="cursor: pointer;"
+                             (click)="redirect(snavAidar.id)"
+                             [src]="((baseUrl + '/aidar/image/' + snavAidar?.backgroundImageId | secure) | async)"/>
+
+                        <img class="aidarPicture" *ngIf="snavAidar.type == 'oddImages'
+                         || aidar.type == 'ball-word'  || aidar.type == 'oddImagesText' ||  aidar.type == 'match' "
+                             [src]="((baseUrl + '/aidar/image/' + snavAidar?.backgroundImageId | secure) | async)" style="cursor: pointer;" (click)="redirect(snavAidar.id)"/>
+                        <img class="aidarPicture" *ngIf="snavAidar.type == 'flowers-word'
+                       || snavAidar.type == 'createWord' || snavAidar.type == 'boxSorting'
+                        || snavAidar.type == 'pazzle' || snavAidar.type == 'wrongWord' || snavAidar.type == 'find' "
+                             [src]="((baseUrl + '/aidar/image/' + snavAidar?.backgroundImageId | secure) | async)" style="cursor: pointer;"
+                             (click)="redirect(snavAidar.id)"/>
+
+                        <img class="aidarPicture" *ngIf=" snavAidar.type == 'think-to-find'
+                        || snavAidar.type == 'syllable-constructor' || snavAidar.type == 'buyn' || snavAidar.type == 'putLetters' "
+                             [src]="((baseUrl + '/aidar/image/' + snavAidar?.backgroundImageId | secure) | async)" style="cursor: pointer;" (click)="redirect(snavAidar.id)"/>
+
+                    </div>
+                    <div style="margin-left: 2%;" fxLayout="column" fxLayoutAlign="start start">
+                        <div class="nameOfAidar">
+                            <b style="font-size: 14px;">{{snavAidar.name}}</b>
+                        </div>
+                        <div class="video-description">
+                            <p style="font-size: 11px;"> {{snavAidar.description?.substring(0, 40)}} <a
+                                    style="color: blue; cursor: pointer;" (click)="redirect(snavAidar.id)">Тағы ...</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </mat-nav-list>
+        </mat-sidenav>
+
+
+        <mat-sidenav-content>
+
+            <button class="{{snav.opened === true ? 'arrow-left' : 'arrow-right'}}" mat-icon-button
+                    (click)="snav.toggle()">
+                <mat-icon>apps</mat-icon>
+            </button>
+
+            <div class="courses-payment" *ngIf="aidar" style="background-color: #ffffff">
+                <div fxLayout="row wrap" fxLayoutAlign="center center" class="height-full">
+                    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" style="background-color: #ffffff">
+                        <div class="bg-white shop-by-category section-gap pad-y-lg">
+                            <div class="payment-option">
+                                <div class="mat-ex-wrapper">
+                                    <mat-card style="background-color: #89DDFF ">
+
+                                        <div class="text-center pad-y-lg mat-grey-50"
+                                             *ngIf="aidar && aidar.aidarType == 'training'">
+                                            <ms-training-aidar [aidar]="aidar"></ms-training-aidar>
+                                        </div>
+                                        <div class="text-center pad-y-lg mat-grey-50"
+                                             *ngIf="aidar && (aidar.aidarType == 'videoAidar' || aidar.aidarType == 'talkingPhoto'
+                                                    || aidar.aidarType == 'letter'|| aidar.aidarType == 'writeWorld')">
+                                            <vg-player style="width: 97%!important;"
+                                                       class="video-pl mrgn-all-md mrgn-b-lg">
+                                                <video [vgMedia]="media" #media id="singleVideo" prelosad="auto"
+                                                       controls>
+                                                    <source [src]="((baseUrl + '/videos/test/' + aidar.videoAidar.videoId))"
+                                                            type="video/mp4">
+                                                </video>
+                                            </vg-player>
+                                        </div>
+                                        <div class="text-center pad-y-lg mat-grey-50"
+                                             *ngIf="aidar.aidarType === 'letsPlay' || aidar.aidarType === 'testYourself' || aidar.aidarType === 'ability' "
+                                             style="background-color: #c4e3f3 !important;">
+                                            <app-odd-img *ngIf="aidar && aidar.type == 'oddImages'"
+                                                         [aidar]="aidar"></app-odd-img>
+                                            <app-flowers-word *ngIf="aidar && aidar.type == 'flowers-word'"
+                                                              [aidar]="aidar"></app-flowers-word>
+                                            <app-think-to-find *ngIf="aidar && aidar.type == 'think-to-find'"
+                                                               [aidar]="aidar"></app-think-to-find>
+                                            <app-ball-word *ngIf="aidar && aidar.type == 'ball-word'"
+                                                           [aidar]="aidar"></app-ball-word>
+                                            <app-syllable-constructor
+                                                    *ngIf="aidar && aidar.type == 'syllable-constructor'"
+                                                    [aidar]="aidar"></app-syllable-constructor>
+                                            <ms-odd-img-audio *ngIf="aidar && aidar.type == 'oddImagesText'"
+                                                              [aidar]="aidar"></ms-odd-img-audio>
+                                            <app-buyn *ngIf="aidar && aidar.type == 'buyn'" [aidar]="aidar"></app-buyn>
+                                            <app-create-word *ngIf="aidar && aidar.type == 'createWord'"
+                                                             [aidar]="aidar"></app-create-word>
+                                            <app-letters *ngIf="aidar && aidar.type == 'boxSorting'"
+                                                         [aidar]="aidar"></app-letters>
+                                            <app-put-letter *ngIf="aidar && aidar.type == 'putLetters'"
+                                                            [aidar]="aidar"></app-put-letter>
+                                            <app-question-image *ngIf="aidar && aidar.type == 'pazzle'"
+                                                                [aidar]="aidar"></app-question-image>
+                                            <app-buyn-kizil-kok *ngIf="aidar && aidar.type == 'dauystyDauysyz'"
+                                                [aidar]="aidar"></app-buyn-kizil-kok>
+                                            <app-games *ngIf="aidar && aidar.type == 'match'"
+                                                       [aidar]="aidar"></app-games>
+                                            <app-wrong-word *ngIf="aidar && aidar.type == 'wrongWord'"
+                                                            [aidar]="aidar"></app-wrong-word>
+                                            <app-find-game *ngIf="aidar && aidar.type == 'find'"
+                                                           [aidar]="aidar"></app-find-game>
+                                            <app-soz-kura *ngIf="aidar && aidar.type == 'sozKura'"
+                                                            [aidar]="aidar"></app-soz-kura>
+                                            <app-saikestendir-photo *ngIf="aidar && aidar.type == 'saikestendirPhoto'"
+                                                          [aidar]="aidar"></app-saikestendir-photo>
+
+                                        </div>
+                                        <div>
+                                            <div fxLayout='row wrap' class="pad-t-lg pad-b-md">
+                                                <div class="mrgn-b-md" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100"
+                                                     fxFlex.lg="100" fxFlex.xl="100">
+                                                    <mat-tab-group>
+                                                        <mat-tab label="Мағлұмат" class="mrgn-b-md">
+                                                            <div *ngIf="aidar" class="text-center pad-y-lg mat-grey-50" style="color: white;">
+                                                                {{aidar.description}}
+                                                            </div>
+                                                        </mat-tab>
+                                                        <mat-tab label="Пікір қалдыру" class="mrgn-b--md">
+                                                            <div fxLayout="row wrap" style="margin-top: 20px"
+                                                                 style="background-color: white; padding: 2%">
+                                                                <div class="form-group pad-r-md" fxFlex.xs="100"
+                                                                     fxFlex.sm="100"
+                                                                     fxFlex.md="calc(100% - 200px)"
+                                                                     fxFlex.lg="calc(100% - 200px)"
+                                                                     fxFlex.xl="calc(100% - 200px)">
+                                                                    <mat-form-field class="full-wid" floatLabel="never">
+                                                                        <input matInput placeholder="Ойыңыз"
+                                                                               [(ngModel)]="text">
+                                                                    </mat-form-field>
+                                                                </div>
+                                                                <div class="contact-btn" fxFlex.xs="100" fxFlex.sm="100"
+                                                                     fxFlex.md="200px"
+                                                                     fxFlex.lg="200px" fxFlex.xl="200px">
+                                                                    <button mat-raised-button color="primary"
+                                                                            (click)="setComment()"
+                                                                            style="width: 100%; color: white;">
+                                                                        Пікір қалдыру
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <!--<mat-divider></mat-divider>-->
+                                                            <div class="gene-card-content"
+                                                                 style="background-color: white; padding: 2% ">
+                                                                <div class="tab-content pad-y-sm"
+                                                                     fxLayoutAlign="space-between start"
+                                                                     *ngFor="let list of aidarComments">
+                                                                    <div class="content" fxLayout="row wrap">
+                                                                        <div fxFlex.xl="76px" fxFlex.lg="76px"
+                                                                             fxFlex.md="76px"
+                                                                             fxFlex.sm="76px" fxFlex.xs="100">
+                                                                            <div class="tab-image mrgn-b-sm mrgn-r-md">
+                                                                                <img class="img-circle" alt="tab image"
+                                                                                     *ngIf="list.avatar"
+                                                                                     [src]="((baseUrl + '/aidar/image/' + list.avatar | secure) | async)"
+                                                                                     width="60" height="60">
+                                                                                <img class="img-circle" alt="tab image"
+                                                                                     *ngIf="!list.avatar"
+                                                                                     [src]="'assets/img/blank_user.png'"
+                                                                                     width="60" height="60">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div fxFlex.xl="calc(100% - 80px)"
+                                                                             fxFlex.lg="calc(100% - 80px)"
+                                                                             fxFlex.md="calc(100% - 80px)"
+                                                                             fxFlex.sm="calc(100% - 80px)"
+                                                                             fxFlex.xs="100">
+                                                                            <p class="mrgn-b-xs">
+                                                                    <span class="primary-text">
+                                                                        {{list.userName}}
+                                                                    </span>
+                                                                            </p>
+                                                                            <ng-container>
+                                                                                <h4 class="desc pad-all-sm">
+                                                                                    {{list.comment}}</h4>
+                                                                            </ng-container>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="icon" fxLayoutAlign="start start">
+                                                                        <button mat-icon-button
+                                                                                *ngIf="user.id === list.userId"
+                                                                                (click)="remove(list.id)">
+                                                                            <mat-icon>delete</mat-icon>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </mat-tab>
+                                                    </mat-tab-group>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+
+

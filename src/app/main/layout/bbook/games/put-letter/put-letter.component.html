@@ -1,0 +1,40 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+<br>
+<br>
+<br>
+<div style="text-align: center" *ngIf="show">
+    <button mat-stroked-button color="primary"
+            *ngFor="let letter of show.text;let i = index"
+            id="{{i}}"
+            cdkDropList
+            (cdkDropListDropped)="drop($event,i)"
+            [cdkDropListConnectedTo]="idList">
+        {{letter}}
+    </button>
+</div>
+
+<br>
+<br>
+<br>
+<div
+        cdkDropList
+        id="all"
+        [cdkDropListConnectedTo]="idList">
+    <button
+            button mat-stroked-button color="primary"
+            *ngFor="let letter of letters"
+            [cdkDragData]="letter"
+            cdkDrag>{{letter}}
+    </button>
+</div>

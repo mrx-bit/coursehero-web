@@ -1,0 +1,72 @@
+<div class="user-manage-list">
+    <mat-card>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between">
+            <div class="mrgn-l-md mrgn-b-md add-user-btn" fxLayoutAlign="start center">
+                <mat-card-actions class="mat-pad-none margin-none">
+                    <button mat-raised-button mat-button-sm color="primary" (click)="contentControl('new')">
+                        Add New Content
+                        <mat-icon class="mrgn-l-md gene-text-xl">add</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="table-responsive" *ngIf="contents">
+            <table class="full-wid" mat-table #table [dataSource]="contents">
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef>Title</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div fxLayoutAlign="start center">
+                            <h5 class="mrgn-b-xs">{{element.tittle}}</h5>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="parent">
+                    <th mat-header-cell *matHeaderCellDef>Parent</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div fxLayoutAlign="start center" *ngIf="parentList">
+                            <h5 class="mrgn-b-xs">{{getNameFromList(element.parentId)}}</h5>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef>Description</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div fxLayoutAlign="start center">
+                            <h5 class="mrgn-b-xs">{{element.description}}</h5>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="pageId">
+                    <th mat-header-cell *matHeaderCellDef>Page Id</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div fxLayoutAlign="start center">
+                            <h5 class="mrgn-b-xs">{{getNameFromListPages(element.pageId)}}</h5>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let element;let i = index;">
+                        <button mat-icon-button>
+                            <mat-icon class="mat-icon-grey gene-text-lg" (click)="contentControl('edit', element)">edit
+                            </mat-icon>
+                        </button>
+                        <button mat-icon-button>
+                            <mat-icon class="mat-icon-grey gene-text-lg">remove_red_eye</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"
+                    (click)="selection.toggle(row)"></tr>
+            </table>
+        </div>
+
+    </mat-card>
+</div>

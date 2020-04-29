@@ -1,0 +1,127 @@
+<div id="templates" class="page-layout carded fullwidth inner-scroll">
+    <!-- TOP BACKGROUND -->
+<!--    <div class="top-bg accent"></div>-->
+    <!-- / TOP BACKGROUND -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="add-page">
+            <h3 class="ml-20">
+                Добавление страницы
+            </h3>
+            <div class="header p-24 h-160"
+                 fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px"
+                 fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between start">
+
+
+                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                    <mat-label>Номер страницы</mat-label>
+                    <input matInput placeholder="Номер страницы"
+                           name="title" type="number"
+                           [(ngModel)]="newPage.number"
+                           required>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                    <mat-label>Описания страницы</mat-label>
+                    <textarea matInput placeholder="Описания страницы"
+                              name="description"
+                              [(ngModel)]="newPage.description"
+                              rows="5">
+                     </textarea>
+                </mat-form-field>
+            </div>
+
+            <div style="text-align: right; margin-top: 40px; margin-bottom: 40px; margin-right: 20px">
+                <button mat-raised-button color="primary" class="mt-24 mt-md-0" style="text-align: right" (click)="create()">
+                    <mat-icon>add</mat-icon> Добавить
+                </button>
+            </div>
+        </div>
+        <div fxLayoutAlign="center center" class="p-20">
+            <div class="search-wrapper mx-32 mx-md-0">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="center center">
+                    <mat-icon>search</mat-icon>
+                    <input #filter [(ngModel)]="searchString" (keyup)="getBySearch()" placeholder="Поиск страниц">
+                </div>
+            </div>
+        </div>
+        <div class="content-card">
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <!--<mat-spinner [diameter]="40" style="position:absolute;left:50%;top:50%"></mat-spinner>-->
+                <mat-progress-bar *ngIf="globalLoading" color="accent" mode="buffer"></mat-progress-bar>
+            </div>
+
+            <mat-table class="templates-table"
+                       #table [dataSource]="bookList"
+                       matSort [@animateStagger]="{value:'50'}"
+                       >
+                <ng-container matColumnDef="number">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>№</mat-header-cell>
+                    <mat-cell *matCellDef="let page; let i = index;">
+                        <p class="text-truncate" *ngIf="tableStatus !== 'edit_'+i">
+                           {{ page.number }}
+                        </p>
+                        <mat-form-field appearance="outline" floatLabel="always"  style="width: 90%" *ngIf="tableStatus === 'edit_'+i">
+                            <input matInput placeholder="Номер страницы"
+                                   name="title" type="number"
+                                   [(ngModel)]="page.number"
+                                   required>
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="description">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Описания</mat-header-cell>
+                    <mat-cell *matCellDef="let page; let i = index">
+
+                        <p class="text-truncate" *ngIf="tableStatus !== 'edit_'+i">
+                            {{page.description}}
+                        </p>
+                        <mat-form-field appearance="outline" floatLabel="always" style="width: 90%" *ngIf="tableStatus === 'edit_'+i">
+                            <textarea matInput placeholder="Описания страницы"
+                                      name="description"
+                                      [(ngModel)]="page.description" rows="2">
+                            </textarea>
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef class="text-right">Действия</mat-header-cell>
+                    <mat-cell *matCellDef="let page; let i = index">
+                        <div fxFlex="row" fxLayoutAlign="end center">
+                            <button mat-button color="primary" matTooltip="Изменить" *ngIf="tableStatus === 'view'"
+                                    aria-label="Page edit" title="Изменить" (click)="tableStatus = 'edit_'+i">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-button color="warn" matTooltip="Удалить" *ngIf="tableStatus === 'view'"
+                                    aria-label="Page delete" title="Delete" (click)="delete(page)">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <button mat-button color="accent" matTooltip="Деактивировать" *ngIf="tableStatus === 'view'"
+                                    aria-label="Page disable" title="Disable" (click)="disable(page)">
+                                <mat-icon>visibility_off</mat-icon>
+                            </button>
+                            <button mat-button color="primary" matTooltip="Сохранить" *ngIf="tableStatus !== 'view'"
+                                    aria-label="Page save" title="Сохранить" (click)="update(page)">
+                                <mat-icon>check</mat-icon>
+                            </button>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                <mat-row *matRowDef="let page; let i = index; columns: displayedColumns;" class="template" matRipple
+                    [ngStyle]="{'height': tableStatus === 'edit_'+i ? '120px' : '50px','padding-top': tableStatus === 'edit_'+i ? '20px' : '10px'}">
+                </mat-row>
+            </mat-table>
+            <mat-paginator [length]="paginationTotalElements"
+                           [pageSize]="paginationRows"
+                           (page)="changeTableList($event)"
+                           [pageSizeOptions]="pageItemCount">
+            </mat-paginator>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+.task {
+  background-color: #FFECB3;
+  border: 6px solid #FFCC00;
+  padding: 1% 0%;
+  color: #1A237E;
+  margin: 10px 0;
+  font-size: 25px;
+}
+
+.rect {
+  border-radius: 50%;
+  border: 1px solid #000000;
+  position: absolute;
+}
+
+.rect-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.syllable:hover {
+  background-color: #E74C3C;
+  cursor: pointer;
+}

@@ -1,0 +1,53 @@
+.clearfix {
+  &:before {
+    display: table;
+    content: '';
+  }
+  &:after {
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+
+.videoStatic {
+  padding-left: 25%;
+  padding-right: 25%;
+
+}
+
+.aidarlar {
+  padding-left: 3%;
+  padding-right: 3%;
+
+}
+
+.tooltip {
+  background: #b71c1c;
+  font-size: 35px;
+
+}
+
+.mat-tooltip.tooltip {
+  background-color: darkblue;
+  font-size: 35px;
+}
+
+.nameOfAidar {
+  padding-left: 3%;
+}
+
+.video {
+  padding-right: 29px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.card-Description {
+  padding-bottom: 10px;
+}
+
+.video-description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

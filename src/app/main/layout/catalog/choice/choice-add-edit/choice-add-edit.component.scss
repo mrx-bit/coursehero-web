@@ -1,0 +1,27 @@
+
+button {
+  margin: 8px 2px 4px 8px;
+  font-family: Muli, Helvetica Neue, Arial, sans-serif;
+}
+
+.form-tittle {
+  margin: 8px 2px 4px 8px;
+  font-family: Muli, Helvetica Neue, Arial, sans-serif;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 80%;
+  margin: 8px 16px 2px;
+}
+
+.left {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}

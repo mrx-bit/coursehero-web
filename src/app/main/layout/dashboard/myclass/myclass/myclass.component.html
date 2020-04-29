@@ -1,0 +1,30 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly center" style="margin-top: 3%;">
+    <div fxFlex="{{isIpadPro || isIpad ? 45 : !isMobile ? 30 : 100}}"
+         *ngFor="let info of this.studentInfos">
+        <mat-card class="example-card" style="width:100%;padding: 10%">
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                 alt="Photo of a Shiba Inu"
+                 style="text-align: center;
+             border-radius: 100%;">
+            <mat-card-content>
+                <p>
+                    <b>{{'IDN' | translate}}: </b> {{info.student.idn}}
+                </p>
+            </mat-card-content>
+            <mat-card-content>
+                <p>
+                    <b>{{'Name_Surname' | translate}}: </b> {{info.student.name}} {{info.student.surname}} {{info.student.middlename}}
+                </p>
+            </mat-card-content>
+            <mat-card-content>
+                <div fxLayout="row" fxLayoutAlign="space-between none">
+                    <p>
+                        <b>{{'Parents' | translate}}:</b> {{info.parent.name}} {{info.parent.surname}} {{info.parent.middlename}}
+                    </p>
+                    <mat-icon>email</mat-icon>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

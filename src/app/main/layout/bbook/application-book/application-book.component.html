@@ -1,0 +1,53 @@
+<div class="user-manage-list">
+    <mat-card>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between">
+            <div class="mrgn-l-md mrgn-b-md add-user-btn" fxLayoutAlign="start center">
+                <mat-card-actions class="mat-pad-none margin-none">
+                    <h3>Заявки для получения доступа</h3>
+                </mat-card-actions>
+            </div>
+        </div>
+        <div class="table-responsive" *ngIf="datasource.applicationBooks">
+            <table class="full-wid" mat-table #table [dataSource]="datasource.applicationBooks">
+                <ng-container matColumnDef="user">
+                    <th mat-header-cell *matHeaderCellDef>Teacher</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div fxLayoutAlign="start center">
+                            <h5 class="mrgn-b-xs">{{datasource.applicationUserMap[element.teacherId].name}}</h5>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="book">
+                    <th mat-header-cell *matHeaderCellDef>Book</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div fxLayoutAlign="start center">
+                            <h5 class="mrgn-b-xs">{{datasource.applicationBookMap[element.bookId].name}}</h5>
+                        </div>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef>Status</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div fxLayoutAlign="start center">
+                            <h5 class="mrgn-b-xs">{{element.status}}</h5>
+                        </div>
+                    </td>
+                </ng-container>
+                <!--<tr mat-row *matRowDef="let row; columns: displayedColumns"-->
+                    <!--(click)="contentControl(row)"></tr>-->
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"
+                    (click)="contentControl(row)"></tr>
+
+            </table>
+        </div>
+        <!--<div class="pagination">-->
+        <!--<mat-paginator [length]="contents.length"-->
+        <!--[pageSize]="10"-->
+        <!--[pageSizeOptions]="[5, 10, 25, 100]">-->
+        <!--</mat-paginator>-->
+        <!--</div>-->
+    </mat-card>
+</div>

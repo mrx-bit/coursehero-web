@@ -1,0 +1,48 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+<mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile>
+        <h2 style="color: #0E2A3B">{{aidar.pazzleBuyn.question}}</h2>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="label-box">
+            <img
+                    [src]="((baseUrl + '/aidar/image/' + aidar.pazzleBuyn.imageId | secure) | async)">
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<br>
+<br>
+
+<div style="text-align: center" *ngIf="text">
+    <button mat-raised-button class="{{ans.letter === '-' ? 'letter-white-button' : ans.color === 'red' ? 'letter-red-button' : 'letter-blue-button'}}"
+            *ngFor="let ans of text;let i = index"
+            id="{{i}}"
+            cdkDropList
+            (cdkDropListDropped)="drop($event,i)"
+            [cdkDropListConnectedTo]="idList"
+            >
+        {{ans.letter}}
+    </button>
+</div>
+
+<br>
+<br>
+<br>
+
+<div *ngIf="letters" style="text-align: center" cdkDropList id="all" [cdkDropListConnectedTo]="idList">
+    <button class="{{l.color === 'red' ? 'letter-red-button' : 'letter-blue-button'}}" mat-raised-button color="primary"
+            *ngFor="let l of letters"
+            [cdkDragData]="l" cdkDrag><b>{{l.letter}}</b></button>
+</div>

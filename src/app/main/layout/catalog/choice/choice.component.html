@@ -1,0 +1,76 @@
+<div class="header accent p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start"
+     fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+    <!-- APP TITLE -->
+    <div fxLayout="row" fxLayoutAlign="start center">
+
+
+        <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+            <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    Справочник
+                </span>
+        </div>
+
+    </div>
+
+</div>
+<div>
+    <!--<app-custom-breadcumb [breadcumbArray]="items"></app-custom-breadcumb>-->
+    <mat-grid-list cols="4" rowHeight="80px" style="display: flex">
+        <mat-grid-tile colspan="1">
+            <div class="left">
+                <button mat-raised-button color="accent" (click)="loadAllChoice()">
+                    <mat-icon>refresh</mat-icon>
+                </button>
+                <button mat-raised-button color="accent" (click)="addChoice()">
+                    <mat-icon>playlist_add</mat-icon>
+                </button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target)" placeholder="Search">
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center">
+        <mat-spinner color="accent"></mat-spinner>
+        <!--*ngIf="loading"-->
+    </div>
+    <div *ngIf="!loading">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="code">
+                <mat-header-cell *matHeaderCellDef> code</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.code}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="nameRu">
+                <mat-header-cell *matHeaderCellDef> ru name</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.nameRu}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="nameKz">
+                <mat-header-cell *matHeaderCellDef> kz name</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.nameKz}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="nameEn">
+                <mat-header-cell *matHeaderCellDef> en name</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.nameEn}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef> actions</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-button color="accent" (click)="updChoice(element.id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-button color="warn" (click)="delChoice(element)">
+                        <mat-icon>delete_forever</mat-icon>
+                    </button>
+                </mat-cell>
+
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+</div>
+
+

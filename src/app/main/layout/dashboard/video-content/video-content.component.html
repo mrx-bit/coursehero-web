@@ -1,0 +1,33 @@
+<div class="videoStatic">
+    <div class="video">
+        <div class="video-player-wrap">
+            <vg-player class="video-pl mrgn-all-md mrgn-b-lg">
+                <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                    <!--          <source [src]="((baseUrl + '/videos/test/' + a.imageId  ))" type="video/mp4">-->
+                </video>
+            </vg-player>
+        </div>
+    </div>
+</div>
+
+
+<div class="aidarlar" *ngFor="let a of aidar">
+
+    <div fxLayout="row" fxLayoutAlign="start center" class="logo">
+        <img [src]="((baseUrl + '/aidar/image/' + a.imageId | secure) | async)" alt="img13" width="50" height="50"/>
+        <div class="nameOfAidar">
+            <h2>{{a.name}}</h2>
+        </div>
+    </div>
+
+
+    <div class="video">
+        <div class="video-player-wrap">
+            <vg-player class="video-pl mrgn-all-md mrgn-b-lg">
+                <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                    <source [src]="((baseUrl + '/videos/test/' + a.imageId  ))" type="video/mp4">
+                </video>
+            </vg-player>
+        </div>
+    </div>
+</div>

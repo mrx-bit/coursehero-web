@@ -1,0 +1,126 @@
+<div class="page-layout carded fullwidth">
+    <div>
+        <div class="header accent p-24" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="logo-icon mr-16"
+                      [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">assignment
+            </mat-icon>
+            <h2 class="m-0">Карта справочника</h2>
+        </div>
+        <div class="content-card">
+            <div class="toolbar px-24 py-8">
+                <button mat-raised-button color="accent" (click)="addChoice()" matTooltip="Save">
+                    Сохранить
+                    <mat-icon>save</mat-icon>
+                </button>&nbsp;&nbsp;
+                <button mat-raised-button color="warn" [routerLink]="'/app/catalog'" matTooltip="Cancel">
+                    Закрыть
+                    <mat-icon>cancel_presentation</mat-icon>
+                </button>
+            </div>
+            <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center">
+                <mat-spinner color="accent"></mat-spinner>
+                <!--*ngIf="loading"-->
+            </div>
+            <div *ngIf="!loading" class="content p-24">
+                <mat-tab-group *ngIf="choice">
+                    <mat-tab label="Данные справочника" style="width: 90%">
+
+                        <div fxLayout="row" fxLayoutAlign="start start">
+                            <mat-form-field appearance="outline" fxFlex>
+                                <mat-label>Код</mat-label>
+                                <mat-icon matSuffix class="secondary-text">name</mat-icon>
+                                <input matInput placeholder="Код" [disabled]="!new" [(ngModel)]="choice.code">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start start">
+                            <mat-form-field appearance="outline" fxFlex>
+                                <mat-label>Наименование на русском языке</mat-label>
+                                <mat-icon matSuffix class="secondary-text">name</mat-icon>
+                                <input matInput placeholder="Наименование на русском языке" [(ngModel)]="choice.nameRu">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start start">
+                            <mat-form-field appearance="outline" fxFlex>
+                                <mat-label>Наименование на казахском языке</mat-label>
+                                <mat-icon matSuffix class="secondary-text">name</mat-icon>
+                                <input matInput placeholder="Наименование на казахском языке"
+                                       [(ngModel)]="choice.nameKz">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start start">
+                            <mat-form-field appearance="outline" fxFlex>
+                                <mat-label>Наименование на английском языке</mat-label>
+                                <mat-icon matSuffix class="secondary-text">name</mat-icon>
+                                <input matInput placeholder="Наименование на английском языке"
+                                       [(ngModel)]="choice.nameEn">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start start">
+                            <mat-form-field appearance="outline" fxFlex>
+                                <mat-label>Краткое наименование на русском языке</mat-label>
+                                <mat-icon matSuffix class="secondary-text">name</mat-icon>
+                                <input matInput placeholder="Краткое наименование на русском языке"
+                                       [(ngModel)]="choice.descriptionRu">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start start">
+                            <mat-form-field appearance="outline" fxFlex>
+                                <mat-label>Краткое наименование на казахском языке</mat-label>
+                                <mat-icon matSuffix class="secondary-text">name</mat-icon>
+                                <input matInput placeholder="Краткое наименование на казахском языке"
+                                       [(ngModel)]="choice.descriptionKz">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start start">
+                            <mat-form-field appearance="outline" fxFlex>
+                                <mat-label>Краткое наименование на английском языке</mat-label>
+                                <mat-icon matSuffix class="secondary-text">name</mat-icon>
+                                <input matInput placeholder="Краткое наименование на казахском языке"
+                                       [(ngModel)]="choice.descriptionEn">
+                            </mat-form-field>
+                        </div>
+
+                    </mat-tab>
+                    <mat-tab label="Поля" [disabled]="fieldsDisabled">
+                        <div class="toolbar px-24 py-8">
+                            <button mat-raised-button color="accent" (click)="ngOnInit()"
+                                    matTooltip="Refresh table data">
+                                <mat-icon>refresh</mat-icon>
+                            </button>&nbsp;&nbsp;
+                            <button mat-raised-button color="accent" (click)="addValues()" matTooltip="Add new">
+                                <mat-icon>playlist_add</mat-icon>
+                            </button>
+                        </div>
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                            <ng-container matColumnDef="code">
+                                <th mat-header-cell *matHeaderCellDef> Код</th>
+                                <td mat-cell *matCellDef="let element"> {{element.code}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef> Наименование</th>
+                                <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="displayNameRu">
+                                <th mat-header-cell *matHeaderCellDef>Отображаемое имя</th>
+                                <td mat-cell *matCellDef="let element"> {{element.displayNameRu}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef>Действия</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button mat-button color="accent" matTooltip="Edit" (click)="editValues(element)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-button color="warn" matTooltip="Delete" (click)="deleteValue(element)">
+                                        <mat-icon>delete_forever</mat-icon>
+                                    </button>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+    </div>
+</div>

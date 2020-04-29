@@ -1,0 +1,37 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png"
+             style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;"
+             (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+
+<div style="padding: 5% 15%">
+    <img class="sound"
+         (click)="playAudio(aidar.oddImagesText.audioId)"
+         [src]="'/assets/img/sound.png'">
+    <span class="text">{{aidar.oddImagesText.text}}</span>
+</div>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+    <div *ngFor="let list of aidar.oddImagesText.oddImages" fxFlex fxFlex.xs style="margin-top: 2%">
+        <div fxFlex="12" fxFlex.xs="15" (click)="playAudio(list.audioId)" fxLayout="end center" fxLayout.xs="end center"
+             style="margin-bottom: 10%; margin-left: 2%">
+            <img class="sound"
+                 [src]="'/assets/img/sound.png'">
+        </div>
+        <div fxFlex="85" fxFlex.xs="85" style="height: 240px;" (click)="chosen(list)" class="box rotate">
+            <img style="width: 90%; height: 90%;" [src]="((baseUrl + '/videos/test/' + list.imageId | secure) | async)"
+                 class="img">
+        </div>
+        <div fxFlex="3"></div>
+    </div>
+</div>
+

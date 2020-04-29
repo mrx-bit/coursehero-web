@@ -1,0 +1,93 @@
+.task {
+  background-color: #FFECB3;
+  border: 6px solid #FFCC00;
+  padding: 1% 0%;
+  color: #1A237E;
+  margin: 10px 0;
+  font-size: 25px;
+}
+
+
+img {
+  max-height: 100%;
+}
+
+.picture {
+  padding: 3%;
+  border-radius: 4px;
+  border: 4px solid #2AA198;
+  background-color: white !important;
+  margin: auto;
+}
+
+.sound {
+  height: 30px;
+  width: 30px;
+}
+
+.label-box {
+  width: 50% !important;
+  height: 80% !important;
+  margin: auto;
+}
+
+.text{
+  color: white;
+  font-size: 40px;
+  margin-left: 2%;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+@media only screen and (max-width: 600px) {
+.text{
+  font-size: 20px;
+}
+
+  .task{
+    font-size: 20px;
+  /*  padding: 2%;*/
+  }
+
+  .sound{
+    width: 20px;
+    height: 20px;
+
+  }
+
+  .img{
+    padding-right: 5%;
+  }
+}
+
+.box {
+  padding: 3%;
+  border-radius: 4px;
+  border: 4px solid #2AA198;
+  background-color: white !important;
+  margin: auto;
+  //margin: 50px auto;
+  //background: #5FCF80;
+  //width: 150px;
+  //height: 150px;
+}
+
+.box:hover {
+  -webkit-transform: rotate(360deg);
+  //background: #9351A6;
+  background-color: white !important;
+  border-radius: 50%;
+}
+
+.rotate {
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.rotate:hover {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}

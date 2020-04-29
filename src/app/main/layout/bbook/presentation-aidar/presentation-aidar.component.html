@@ -1,0 +1,109 @@
+<div id="books" class="page-layout simple">
+
+    <!-- HEADER -->
+    <div class="header accent p-16 p-sm-24" fxLayout="column" fxLayoutAlign="center center">
+
+        <div class="hero-text">
+            <mat-icon class="hero-icon">school</mat-icon>
+            <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
+                WELCOME TO BILGEN BOOKS
+            </h1>
+            <h3 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
+                Our books will step you through the process of building a small application, or adding a new feature
+                to an existing application.
+            </h3>
+        </div>
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-24">
+
+        <div fxLayout="column" fxLayoutAlign="center">
+
+            <div fxLayout="row">
+                <div fxFlex="80">
+
+                </div>
+                <div fxFlex="20" style="text-align:right">
+                    <button mat-raised-button color="primary" [routerLink]="'/bbook/book/new/0'"
+                            class="fixed-add-button">
+                        <mat-icon>note_add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="filters" fxLayout="column" fxLayoutAlign="space-between center"
+                 fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+                <mat-form-field appearance="outline" floatLabel="always" class="book-search">
+                    <mat-label>Search for a book</mat-label>
+                    <input matInput placeholder="Enter a keyword..."
+                           [(ngModel)]="searchTerm"
+                           (input)="filterBooksByTerm()">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="category-selector">
+                    <mat-label>Category</mat-label>
+                    <mat-select [(ngModel)]="currentCategory"
+                                (selectionChange)="filterBooksByCategory()">
+                        <mat-option [value]="'all'">
+                            All
+                        </mat-option>
+                        <mat-option *ngFor="let category of categories" [value]="category.value">
+                            {{ category.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="books" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{value:'50'}">
+
+                <div class="book" *ngFor="let book of filteredBooks" fxFlex="100" fxFlex.gt-xs="50"
+                     fxFlex.gt-sm="33" [ngClass]="book.category" [@animate]="{value:'*',params:{y:'100%'}}">
+
+                    <div class="book-content" fxLayout="column" fxFlex="1 1 auto">
+
+                        <div class="header" fxLayout="row" fxLayoutAlign="center center"
+                             [ngClass]="book.category + '-bg'">
+
+                            <div class="category" fxFlex>
+                                {{book.category}}
+                            </div>
+
+                            <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                                <mat-icon class="length-icon s-20">access_time</mat-icon>
+                                <div class="min">{{book.releaseDate.year}}</div>
+                            </div>
+
+                        </div>
+
+                        <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+                            <div class="h1">{{book.name}}</div>
+                            <div class="updated">{{book.description}}</div>
+                        </div>
+
+                        <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-button color="accent"
+                                    [routerLink]="'/bbook/book/' + book.id + '/' + 0">
+                                START
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="no-books" *ngIf="filteredBooks.length === 0">
+                    No books found!
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

@@ -1,0 +1,40 @@
+.task {
+    background-color: #FFECB3;
+    border: 6px solid #FFCC00;
+    padding: 1% 0%;
+    color: #1A237E;
+    margin: 10px 0;
+    font-size: 25px;
+}
+
+.buin{
+    background-color: #2AA198;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.main-container{
+    padding: 30px;
+
+}
+
+.syllable:hover{
+    background-color: #E74C3C;
+    cursor: pointer;
+}
+
+.rect-child{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rect{
+    border-radius: 50%;
+    position: absolute;
+}
+
+.line {
+    stroke-width: 2;
+}

@@ -1,0 +1,52 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+<div>
+<mat-grid-list cols="1" rowHeight="10:1">
+    <mat-grid-tile>
+        <div class="example-container"
+            cdkDropList
+            [cdkDropListData]="numbers"
+            [cdkDropListConnectedTo]="evens">
+            <button
+                button mat-stroked-button color="primary"
+                *ngFor="let number of numbers"
+                [cdkDragData]="number"
+                cdkDrag style="margin-right:3%;
+                background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none;
+                font-size: 25px;
+                font-weight: bolder;
+
+
+                    ">{{number}}</button>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+</div>
+<mat-grid-list cols="1" rowHeight="10:3">
+    <mat-grid-tile>
+        <div id="1" cdkDropList
+             [cdkDropListData]="even"
+             [cdkDropListConnectedTo]="evens"
+             (cdkDropListDropped)="drop($event)">
+            <span> <img
+                    [src]="((baseUrl + '/aidar/image/' + aidar.wrongWord.imageId | secure) | async)"
+                    style="align-items: flex-start; width: auto; height: 250px;">
+            </span>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

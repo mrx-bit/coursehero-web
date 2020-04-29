@@ -1,0 +1,86 @@
+<!--<div id="templates" class="page-layout carded fullwidth inner-scroll">-->
+<!--    &lt;!&ndash; TOP BACKGROUND &ndash;&gt;-->
+<!--    <div class="top-bg accent"></div>-->
+<!--    &lt;!&ndash; / TOP BACKGROUND &ndash;&gt;-->
+<!--    &lt;!&ndash; CENTER &ndash;&gt;-->
+<!--    <div class="center">-->
+<!--        &lt;!&ndash; HEADER &ndash;&gt;-->
+<!--        <div class="header accent p-24 h-160"-->
+<!--             fxLayout="column" fxLayoutAlign="center center"-->
+<!--             fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">-->
+<!--            &lt;!&ndash; SEARCH &ndash;&gt;-->
+<!--            <div class="search-wrapper mx-32 mx-md-0">-->
+<!--                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">-->
+<!--                    <mat-icon>search</mat-icon>-->
+<!--                    <input #filter [(ngModel)]="searchString" (keyup)="getBySearch()" placeholder="Поиск глав(подглав)">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; / SEARCH &ndash;&gt;-->
+
+<!--            <button mat-raised-button class="fuse-white mt-24 mt-md-0" (click)="contentControl('new')">-->
+<!--                <span>Добавить главу</span>-->
+<!--            </button>-->
+
+<!--        </div>-->
+
+<!--        <div class="content-card">-->
+<!--            <div fxLayout="row" fxLayoutAlign="center center">-->
+<!--                &lt;!&ndash;<mat-spinner [diameter]="40" style="position:absolute;left:50%;top:50%"></mat-spinner>&ndash;&gt;-->
+<!--                <mat-progress-bar *ngIf="globalLoading" color="accent" mode="buffer"></mat-progress-bar>-->
+<!--            </div>-->
+<!--             <div *ngIf="linkList" class="templates-table">-->
+<!--                 <db-angular-tree-grid [data]="linkList" #angularGrid-->
+<!--                                       [configs]="configs"-->
+<!--                                       (rowselect)="contentControl('edit', $event.data)"-->
+<!--                 ></db-angular-tree-grid>-->
+<!--             </div>-->
+
+<!--&lt;!&ndash;            (rowselect)="contentControl('edit', $event.data)"&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-table class="templates-table"&ndash;&gt;-->
+<!--&lt;!&ndash;                   #table [dataSource]="linkList"&ndash;&gt;-->
+<!--&lt;!&ndash;                   matSort [@animateStagger]="{value:'50'}"&ndash;&gt;-->
+<!--&lt;!&ndash;                   fusePerfectScrollbar>&ndash;&gt;-->
+<!--&lt;!&ndash;                <ng-container matColumnDef="number">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-header-cell *matHeaderCellDef mat-sort-header>№</mat-header-cell>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-cell *matCellDef="let link; let i = index;">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="text-truncate">&ndash;&gt;-->
+<!--&lt;!&ndash;                            {{ setNumeration(i, link.hasParent) }}&ndash;&gt;-->
+<!--&lt;!&ndash;                        </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-cell>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ng-container>&ndash;&gt;-->
+<!--&lt;!&ndash;                <ng-container matColumnDef="title">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-header-cell *matHeaderCellDef mat-sort-header>Названия</mat-header-cell>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-cell *matCellDef="let link">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="text-truncate">{{link.title}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-cell>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ng-container>&ndash;&gt;-->
+<!--&lt;!&ndash;                <ng-container matColumnDef="description">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-header-cell *matHeaderCellDef mat-sort-header>Описания</mat-header-cell>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-cell *matCellDef="let link">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="text-truncate">{{link.description}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-cell>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ng-container>&ndash;&gt;-->
+<!--&lt;!&ndash;                <ng-container matColumnDef="pageNumber">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-header-cell *matHeaderCellDef mat-sort-header>Страница</mat-header-cell>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-cell *matCellDef="let link">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="text-truncate">{{link.pageNumber}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-cell>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ng-container>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <mat-row *matRowDef="let link; columns: displayedColumns;"&ndash;&gt;-->
+<!--&lt;!&ndash;                         class="template"&ndash;&gt;-->
+<!--&lt;!&ndash;                         matRipple&ndash;&gt;-->
+<!--&lt;!&ndash;                         (click)="contentControl('edit', link)">&ndash;&gt;-->
+<!--&lt;!&ndash;                </mat-row>&ndash;&gt;-->
+<!--&lt;!&ndash;            </mat-table>&ndash;&gt;-->
+<!--&lt;!&ndash;        <mat-paginator [length]="paginationTotalElements"&ndash;&gt;-->
+<!--&lt;!&ndash;                       [pageSize]="paginationRows"&ndash;&gt;-->
+<!--&lt;!&ndash;                       (page)="changeTableList($event)"&ndash;&gt;-->
+<!--&lt;!&ndash;                       [pageSizeOptions]="pageItemCount">&ndash;&gt;-->
+<!--&lt;!&ndash;        </mat-paginator>&ndash;&gt;-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->

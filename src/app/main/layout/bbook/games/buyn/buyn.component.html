@@ -1,0 +1,47 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="40" fxFlex.xs="47" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+<br>
+<br>
+<mat-grid-list cols="{{games.length}}" rowHeight="3:1">
+    <mat-grid-tile *ngFor="let gameShow of games;">
+        <div class="label-box" style="padding-left: 50px; padding-right: 50px">
+            <img
+                [src]="((baseUrl + '/aidar/image/' + gameShow.image | secure) | async)">
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="{{games.length}}" rowHeight="3:1">
+    <mat-grid-tile *ngFor="let gameShow of games;let i = index">
+        <div style="text-align: center;">
+            <button style="background-color: white; font-size: 35px;"
+                    mat-stroked-button color="primary"
+                    *ngFor="let id of gameShow.idList;let j = index" id="{{id}}" cdkDropList
+                    (cdkDropListDropped)="drop($event,i,j)"
+                    [cdkDropListConnectedTo]="idList">
+                {{gameShow.display[j]}}
+            </button>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<div style="text-align: center" cdkDropList id="all" [cdkDropListConnectedTo]="idList">
+    <button style="margin: 1% 1%; background-color: white; font-size: 35px"
+        button mat-stroked-button color="primary"
+        *ngFor="let text of allRandomText"
+        [cdkDragData]="text"
+            cdkDrag><b>{{text}}</b></button>
+
+</div>
+
+

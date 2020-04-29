@@ -1,0 +1,58 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+
+
+<mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile>
+        <h2 style="color: #0E2A3B; padding-left: 200px;">{{aidar.pazzle.question}}</h2>
+    </mat-grid-tile>
+    <mat-grid-tile  >
+        <div class="label-box" fxFlex fxLayoutAlign="start center">
+            <img
+                [src]="((baseUrl + '/aidar/image/' + aidar.pazzle.imageId | secure) | async)"
+                style="max-height: 60%;">
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<br>
+<br>
+
+<div style="text-align: center" *ngIf="answer">
+    <button mat-stroked-button color="primary"
+            *ngFor="let ans of answer.display;let i = index"
+            id="{{i}}"
+            cdkDropList
+            (cdkDropListDropped)="drop($event,i)"
+            [cdkDropListConnectedTo]="idList"
+            style="border-radius: 100%;
+            font-size: 30px;
+            background-color: white;">
+        {{ans}}
+    </button>
+</div>
+<br>
+<br>
+<br>
+<div *ngIf="answer" style="text-align: center"
+     cdkDropList
+     id="all"
+     [cdkDropListConnectedTo]="idList">
+    <button style="margin: 2% 2%;
+            border-radius: 100%;
+            font-size: 30px;
+            background-color: white;"
+        button mat-stroked-button color="primary"
+        *ngFor="let ans of answer.allTextRandom"
+        [cdkDragData]="ans" cdkDrag><b>{{ans}}</b></button>
+</div>

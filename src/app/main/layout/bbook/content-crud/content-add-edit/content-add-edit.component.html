@@ -1,0 +1,89 @@
+<form [formGroup]="contentForm" class="popup-card-width add-new-user" style="width: 100%!important;">
+    <mat-toolbar matDialogTitle class="mat-primary">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-dialog-content>
+        <mat-form-field class="mrgn-b-sm">
+            <input matInput type="text" formControlName="tittle" class="form-control" placeholder="Title">
+            <mat-error *ngIf="contentForm.controls['tittle'].touched && !contentForm.controls['tittle'].valid">
+                <mat-error *ngIf="contentForm.controls['tittle'].hasError('required')"
+                           class="required alert-error">
+                    You must enter title.
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Select the parent</mat-label>
+            <mat-select matInput formControlName="parentId" class="form-control" placeholder="Select parent">
+                <!--<mat-option *ngFor="let parent in content.parent" >{{ parent}}</mat-option>-->
+                <mat-option *ngFor="let type of list" [value]="type.id">{{type.tittle}}</mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="mrgn-b-sm">
+            <input matInput type="text" formControlName="description" class="form-control" placeholder="Description">
+            <mat-error
+                    *ngIf="contentForm.controls['description'].touched && !contentForm.controls['description'].valid">
+                <mat-error *ngIf="contentForm.controls['description'].hasError('required')"
+                           class="required alert-error">
+                    You must enter description.
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="mrgn-b-sm">
+            <mat-select matInput placeholder="pages"
+                        formControlName="pageId"
+                        name="pageId"
+                        rows="5">
+                <mat-option *ngFor="let page of pages" [value]="page.id">
+                    {{page.number}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="contentForm.controls['pageId'].touched && !contentForm.controls['pageId'].valid">
+                <mat-error *ngIf="contentForm.controls['pageId'].hasError('required')"
+                           class="required alert-error">
+                    You must enter page Id.
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+        <button *ngIf="action !== 'edit'"
+                mat-button
+                class="save-button"
+                (click)="matDialogRef.close(['add',contentForm])"
+                [disabled]="contentForm.invalid"
+                aria-label="SAVE">
+            Add
+        </button>
+        <button *ngIf="action === 'edit'"
+                mat-button
+                class="save-button"
+                (click)="activate()"
+                aria-label="DELETE">
+            Activate
+        </button>
+        <button *ngIf="action === 'edit'"
+                mat-button
+                class="save-button"
+                (click)="delete()"
+                aria-label="DELETE">
+            Delete
+        </button>
+        <button *ngIf="action === 'edit'"
+                mat-button class="save-button"
+                (click)="matDialogRef.close(['save', contentForm])"
+                [disabled]="contentForm.invalid"
+                aria-label="SAVE"> Save
+        </button>
+
+    </div>
+</form>

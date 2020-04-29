@@ -1,0 +1,55 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+
+<div class="text-center ">
+    <div class="header-mat-tab">
+       <!-- <div fxLayout="end center" style="margin-left: 3%; margin-bottom: 2%">
+            <img style="height: 50px; width: 50px;cursor: pointer" (click)="playAudio(aidar.training.audioId)"
+                 [src]="'/assets/img/sound.png'">
+        </div>-->
+        <div fxLayout="row" *ngIf="aidar.training.videoId && aidar.training.imageId">
+            <div fxFlex="48" style="margin-left: 1%;">
+                <img [src]="((baseUrl + '/aidar/image/' + aidar.training.imageId | secure) | async)">
+            </div>
+            <div fxFlex="48" *ngIf="aidar.training.videoId">
+                <div class="video-player-wrap">
+                    <vg-player class="video-pl mrgn-all-md mrgn-b-lg">
+                        <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                            <source [src]="((baseUrl + '/videos/test/' + aidar.training.videoId ))" type="video/mp4">
+                        </video>
+                    </vg-player>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" *ngIf="aidar.training.videoId">
+            <div fxFlex="100">
+                <div class="video-player-wrap">
+                    <vg-player class="video-pl mrgn-all-md mrgn-b-lg">
+                        <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                            <source [src]="((baseUrl + '/videos/test/' + aidar.training.videoId ))" type="video/mp4">
+                        </video>
+                    </vg-player>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" *ngIf="aidar.training.imageId">
+            <div fxFlex="20"></div>
+            <div fxFlex="60" style="margin: 0 2%">
+                <img [src]="((baseUrl + '/aidar/image/' + aidar.training.imageId | secure) | async)">
+            </div>
+            <div fxFlex="20"></div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png"
+             style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;"
+             (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+<br>
+<br>
+
+<div fxLayout="row" fxFlexAlign="space-evenly center" style="width: 100%;">
+    <div fxLayout="column" fxLayoutAlign="space-evenly center" style="width: 50%;">
+        <div *ngFor="let lside of leftSide; let i = index;">
+            <div class="label-box" >
+                <img class="{{lside.checked === true ? 'blur' : ''}}"
+                        [src]="((baseUrl + '/aidar/image/' + lside.image | secure) | async)"
+                        style="width: 300px; height: 200px; cursor: pointer;" (click)="check(lside)">
+            </div>
+
+        </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="space-evenly center" style="width: 50%;">
+        <div *ngFor="let rside of rightSide; let i = index;">
+
+            <div class="label-box" >
+                <img class="{{rside.checked === true ? 'blur' : ''}}"
+                        [src]="((baseUrl + '/aidar/image/' + rside.image | secure) | async)"
+                        style="width: 300px; height: 200px; cursor: pointer;" (click)="check(rside)">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+

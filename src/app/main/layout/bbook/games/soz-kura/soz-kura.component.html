@@ -1,0 +1,38 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png"
+             style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;"
+             (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+
+<br>
+<br>
+
+<div *ngIf="randomLeksems && randomLeksems.length > 0" style="text-align: center" cdkDropList id="all"
+     [cdkDropListConnectedTo]="rightAnswer">
+    <button mat-raised-button color="primary"
+            *ngFor="let leksem of randomLeksems"
+            [cdkDragData]="leksem" cdkDrag><b>{{leksem}}</b></button>
+</div>
+<br><br>
+<div style="text-align: center" *ngIf="boxes && boxes.length > 0">
+    <br>
+    <br>
+    <button mat-raised-button
+            *ngFor="let ans of boxes; let i = index"
+            id="{{rightAnswer[i]}}"
+            cdkDropList
+            (cdkDropListDropped)="drop($event,i)"
+            [cdkDropListConnectedTo]="rightAnswer"
+    >
+        {{ans}}
+    </button>
+</div>

@@ -1,0 +1,47 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+<div *ngIf="randomList.length >=1">
+<br>
+
+    <mat-grid-list  cols="{{aidar.match.length}}" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let matchC of aidar.match;let i=index">
+            <div class="label-box" id="{{matchC.imageId}}" cdkDropList
+                 [cdkDropListConnectedTo]="idList"
+                 (cdkDropListDropped)="drop($event,i)">
+                <br>
+                <span *ngIf="matchC.imageId === matchC.answerImage">
+                    <img [src]="((baseUrl + '/aidar/image/' + matchC.imageId | secure) | async)">
+                </span>
+                <span *ngIf="matchC.imageId !== matchC.answerImage">Сәйкес суретті алып қой</span>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="{{aidar.match.length}}" rowHeight="6:1">
+        <mat-grid-tile *ngFor="let j of randomList;let i = index">
+            <h2><b>{{aidar.match[i].text}}</b></h2>
+        </mat-grid-tile>
+    </mat-grid-list>
+<br>
+    <mat-grid-list style="padding-top: 3%" cols="{{aidar.match.length}}" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let j of randomList;let i = index">
+            <div *ngIf="aidar.match[j].imageId !== aidar.match[j].answerImage"
+                 id="{{idList[i]}}" cdkDropList [cdkDropListConnectedTo]="idList"
+                 class="label-box2">
+                <div class="label-box2" [cdkDragData]="aidar.match[j].imageId" cdkDrag>
+                    <img style="height: 60%;" [src]="((baseUrl + '/aidar/image/' + aidar.match[j].imageId| secure) | async)">
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

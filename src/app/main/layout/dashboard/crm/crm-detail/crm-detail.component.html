@@ -1,0 +1,35 @@
+<div fxLayout="row" fxLayoutAlign="end center">
+    <mat-icon matTooltip="Осы кытапты тегын алу ушын 20 адамнын ЖСН тыргеныз">wb_incandescent</mat-icon>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex.gt-sm="25" fxFlex="55">
+        <mat-card class="pad-t-none">
+            <div class="gene-thumb no-gutter"><img src="assets/img/post1.jpg" width="300" height="200"></div>
+            <div class="gene-card-content">
+                <h3>Mathematical</h3>
+            </div>
+        </mat-card>
+    </div>
+</div>
+
+
+<mat-grid-list cols="2" rowHeight="10:1">
+    <mat-grid-tile *ngFor="let student of teacherBookCurrent.students">
+        <mat-form-field appearance="legacy">
+            <mat-label>Наберите ИИН</mat-label>
+            <input matInput placeholder="ИИН" [(ngModel)]="student">
+            <mat-icon matSuffix>keyboard</mat-icon>
+        </mat-form-field>
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+<!--BUTTON-->
+
+<div fxLayout="column" fxLayoutAlign="space-around center" class="customButton">
+    <button class="mrgn-all-xs" mat-raised-button color="accent" (click)="addIdn()">add</button>
+</div>
+<div fxLayout="column" fxLayoutAlign="space-around center" class="customButton">
+    <button class="mrgn-all-xs" mat-raised-button color="accent">Accent</button>
+</div>

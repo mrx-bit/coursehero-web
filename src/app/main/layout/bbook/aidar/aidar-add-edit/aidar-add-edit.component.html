@@ -1,0 +1,1180 @@
+<div class="popup-card-width add-new-user" style="width: 100%!important;">
+    <mat-toolbar matDialogTitle class="mat-primary">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Редактировать заявку</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-dialog-content>
+
+
+        <div id="product" class="page-layout carded fullwidth inner-scroll">
+
+            <!-- TOP BACKGROUND -->
+            <div class="top-bg accent"></div>
+            <!-- / TOP BACKGROUND -->
+
+            <!-- CENTER -->
+            <div class="center">
+
+                <!-- HEADER -->
+                <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+                    <!-- APP TITLE -->
+                    <div fxLayout="row" fxLayoutAlign="start center">
+
+                        <!--<button mat-icon-button class="mr-0 mr-sm-16" click()=""">-->
+                        <!--<mat-icon>arсrow_back</mat-icon>-->
+                        <!--</button>-->
+
+                        <div class="product-image mr-8 mr-sm-16"
+                             [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                            <img *ngIf="aidar" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+                        </div>
+
+                        <div fxLayout="column" fxLayoutAlign="start start"
+                             [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                            <div class="h2" *ngIf="pageType ==='edit'">
+                                {{aidar.name}}
+                            </div>
+                            <div class="h2" *ngIf="pageType ==='new'">
+                                {{'New_Aidar' | translate}}
+                            </div>
+                            <div class="subtitle secondary-text">
+                                <span>  {{'Aidar_Details' | translate}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / APP TITLE -->
+
+                    <button mat-raised-button
+                            class="save-product-button"
+                            [ngClass]="'blue-800-bg'"
+                            *ngIf="pageType ==='new'" (click)="addAidar()">
+                        <mat-icon style="color: white;">add</mat-icon> &nbsp;
+                        <span style="color: white;">  {{'Add' | translate}}</span>
+                    </button>
+
+                    <button mat-raised-button
+                            class="save-product-button"
+                            [ngClass]="'blue-800-bg'"
+                            *ngIf="pageType ==='edit'" (click)="saveAidar()">
+                        <mat-icon style="color: white;">save</mat-icon> &nbsp;
+                        <span style="color: white;">{{'Save' | translate}}</span>
+                    </button>
+                </div>
+                <!-- / HEADER -->
+
+                <!-- CONTENT CARD -->
+                <div class="content-card">
+
+                    <!-- CONTENT -->
+                    <div class="content" *ngIf="aidar">
+
+
+                        <div name="productForm" class="product w-100-p" fxLayout="column" fxFlex
+                             style="padding-bottom: 3%;">
+                            <div class="tab-content p-24" fusePerfectScrollbar style="margin-bottom: -30px">
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Name' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'Name' | translate}}"
+                                           [(ngModel)]="aidar.name"
+                                           name="name"
+                                           required>
+                                </mat-form-field>
+
+                                <mat-radio-group [(ngModel)]="nameLang" style="width: 100%;" fxLayout="row" fxLayoutAlign="space-evenly center">
+                                    <mat-radio-button [value]="1">Казахский</mat-radio-button>
+                                    <mat-radio-button [value]="2">Русский</mat-radio-button>
+                                    <mat-radio-button [value]="3">Английский</mat-radio-button>
+                                </mat-radio-group>
+
+                                <mat-form-field *ngIf="nameLang === 1" appearance="outline"
+                                                floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Kazakh Name' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'Kazakh Name' | translate}}"
+                                           [(ngModel)]="aidar.names.kz"
+                                           name="nameKz"
+                                           required>
+                                </mat-form-field>
+
+                                <mat-form-field *ngIf="nameLang === 2" appearance="outline"
+                                                floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Russian Name' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'Russian Name' | translate}}"
+                                           [(ngModel)]="aidar.names.ru"
+                                           name="nameRu"
+                                           required>
+                                </mat-form-field>
+
+                                <mat-form-field *ngIf="nameLang === 3" appearance="outline"
+                                                floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'English Name' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'English Name' | translate}}"
+                                           [(ngModel)]="aidar.names.en"
+                                           name="nameEn"
+                                           required>
+                                </mat-form-field>
+
+                                <!--<mat-form-field *ngIf="aidar.names && aidar.names.kz !== undefined" appearance="outline"-->
+                                                <!--floatLabel="always" class="w-100-p">-->
+                                    <!--<mat-label>{{'Kazakh Name' | translate}}</mat-label>-->
+                                    <!--<input matInput placeholder="{{'Kazakh Name' | translate}}"-->
+                                           <!--[(ngModel)]="aidar.names.kz"-->
+                                           <!--name="nameKz"-->
+                                           <!--required>-->
+                                <!--</mat-form-field>-->
+
+                                <!--<mat-form-field *ngIf="aidar.names && aidar.names.ru !== undefined" appearance="outline"-->
+                                                <!--floatLabel="always" class="w-100-p">-->
+                                    <!--<mat-label>{{'Russian Name' | translate}}</mat-label>-->
+                                    <!--<input matInput placeholder="{{'Russian Name' | translate}}"-->
+                                           <!--[(ngModel)]="aidar.names.ru"-->
+                                           <!--name="nameRu"-->
+                                           <!--required>-->
+                                <!--</mat-form-field>-->
+
+                                <!--<mat-form-field *ngIf="aidar.names && aidar.names.en !== undefined" appearance="outline"-->
+                                                <!--floatLabel="always" class="w-100-p">-->
+                                    <!--<mat-label>{{'English Name' | translate}}</mat-label>-->
+                                    <!--<input matInput placeholder="{{'English Name' | translate}}"-->
+                                           <!--[(ngModel)]="aidar.names.en"-->
+                                           <!--name="nameEn"-->
+                                           <!--required>-->
+                                <!--</mat-form-field>-->
+
+
+
+
+                                <!--           TIMA KOROCHE MINANEN BASTALADI RADIO BUTTON         -->
+
+
+
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Description' | translate}}</mat-label>
+                                    <textarea matInput placeholder="{{'Description' | translate}}"
+                                              [(ngModel)]="aidar.description"
+                                              name="description"
+                                              rows="5">
+                                    </textarea>
+                                </mat-form-field>
+
+                                <mat-radio-group [(ngModel)]="descriptionLang" style="width: 100%;" fxLayout="row" fxLayoutAlign="space-evenly center">
+                                    <mat-radio-button [value]="1">Казахский</mat-radio-button>
+                                    <mat-radio-button [value]="2">Русский</mat-radio-button>
+                                    <mat-radio-button [value]="3">Английский</mat-radio-button>
+                                </mat-radio-group>
+
+                                <mat-form-field *ngIf="descriptionLang === 1"
+                                                appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Kazakh Description' | translate}}</mat-label>
+                                    <textarea matInput placeholder="{{'Kazakh Description' | translate}}"
+                                              [(ngModel)]="aidar.descriptions.kz"
+                                              name="descriptionKz"
+                                              rows="5">
+                                    </textarea>
+                                </mat-form-field>
+
+                                <mat-form-field *ngIf="descriptionLang === 2"
+                                                appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Russian Description' | translate}}</mat-label>
+                                    <textarea matInput placeholder="{{'Russian Description' | translate}}"
+                                              [(ngModel)]="aidar.descriptions.ru"
+                                              name="descriptionRu"
+                                              rows="5">
+                                    </textarea>
+                                </mat-form-field>
+
+                                <mat-form-field *ngIf="descriptionLang === 3"
+                                                appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'English Description' | translate}}</mat-label>
+                                    <textarea matInput placeholder="{{'English Description' | translate}}"
+                                              [(ngModel)]="aidar.descriptions.en"
+                                              name="descriptionEn"
+                                              rows="5">
+                                    </textarea>
+                                </mat-form-field>
+
+                                <!--<mat-form-field *ngIf="aidar.descriptions && aidar.descriptions.kz !== undefined "-->
+                                                <!--appearance="outline" floatLabel="always" class="w-100-p">-->
+                                    <!--<mat-label>{{'Kazakh Description' | translate}}</mat-label>-->
+                                    <!--<textarea matInput placeholder="{{'Kazakh Description' | translate}}"-->
+                                              <!--[(ngModel)]="aidar.descriptions.kz"-->
+                                              <!--name="descriptionKz"-->
+                                              <!--rows="5">-->
+                                    <!--</textarea>-->
+                                <!--</mat-form-field>-->
+
+                                <!--<mat-form-field *ngIf="aidar.descriptions && aidar.descriptions.ru !== undefined"-->
+                                                <!--appearance="outline" floatLabel="always" class="w-100-p">-->
+                                    <!--<mat-label>{{'Russian Description' | translate}}</mat-label>-->
+                                    <!--<textarea matInput placeholder="{{'Russian Description' | translate}}"-->
+                                              <!--[(ngModel)]="aidar.descriptions.ru"-->
+                                              <!--name="descriptionRu"-->
+                                              <!--rows="5">-->
+                                    <!--</textarea>-->
+                                <!--</mat-form-field>-->
+
+                                <!--<mat-form-field *ngIf="aidar.descriptions && aidar.descriptions.en !== undefined"-->
+                                                <!--appearance="outline" floatLabel="always" class="w-100-p">-->
+                                    <!--<mat-label>{{'English Description' | translate}}</mat-label>-->
+                                    <!--<textarea matInput placeholder="{{'English Description' | translate}}"-->
+                                              <!--[(ngModel)]="aidar.descriptions.en"-->
+                                              <!--name="descriptionEn"-->
+                                              <!--rows="5">-->
+                                    <!--</textarea>-->
+                                <!--</mat-form-field>-->
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Order' | translate}}</mat-label>
+                                    <input type="number" matInput placeholder="{{'Order' | translate}}"
+                                           [(ngModel)]="aidar.order" name="order"/>
+                                </mat-form-field>
+
+                                <div appearance="outline" floatLabel="always" class="w-100-p">
+                                    Айдар фото :
+                                    <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                           style="display:none;"/>
+                                    <button mat-raised-button color="warn" rows="5"
+                                            (click)="addFile('aidar')" type="button">
+                                        <mat-icon>image</mat-icon>
+                                        {{'Upload' | translate}}
+                                    </button>
+                                    <br>
+                                    <br>
+
+                                    <div *ngIf="aidar.imageId" class="label-box">
+                                        <img [src]="((baseUrl + '/aidar/image/' + aidar.imageId | secure) | async)">
+                                    </div>
+                                    <br>
+                                    <br>
+                                </div>
+
+                                <div appearance="outline" floatLabel="always" class="w-100-p">
+                                    Аудиозапись задания :
+                                    <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                           style="display:none;"/>
+                                    <button mat-raised-button color="warn" rows="5"
+                                            (click)="addFile('aidar.taskAudio')" type="button">
+                                        <mat-icon>headset</mat-icon>
+                                        {{'Upload' | translate}}
+                                    </button>
+                                    <br>
+                                    <br>
+                                    <div class="label-box" *ngIf="aidar.taskAudioId">
+                                        Task Audio Upload
+                                        <br>
+                                        <br>
+                                    </div>
+                                </div>
+
+                                <div appearance="outline" floatLabel="always" class="w-100-p">
+                                    Айдар фото обложки :
+                                    <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                           style="display:none;"/>
+                                    <button mat-raised-button color="warn" rows="5"
+                                            (click)="addFile('aidar.background')" type="button">
+                                        <mat-icon>image</mat-icon>
+                                        {{'Upload' | translate}}
+                                    </button>
+                                    <br>
+                                    <br>
+
+                                    <div *ngIf="aidar.backgroundImageId" class="label-box">
+                                        <img [src]="((baseUrl + '/aidar/image/' + aidar.backgroundImageId | secure) | async)">
+                                    </div>
+                                    <br>
+                                    <br>
+                                </div>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'PageId' | translate}}</mat-label>
+                                    <mat-select matInput placeholder="{{'contentId' | translate}}"
+                                                [(ngModel)]="aidar.contentId"
+                                                name="pageId"
+                                                rows="5">
+                                        <mat-option *ngFor="let content of contents" [value]="content.id">
+                                            {{content.tittle}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Type' | translate}}</mat-label>
+                                    <mat-select matInput placeholder="{{'Type' | translate}}"
+                                                [(ngModel)]="aidar.aidarType"
+                                                name="type"
+                                                (selectionChange)="getTypesGames()"
+                                                rows="5">
+                                        <mat-option *ngFor="let type of aidarType" [value]="type.code">
+                                            {{type?.displayNameKz}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <div *ngIf="aidar.aidarType === 'videoAidar' || aidar.aidarType === 'talkingPhoto'||
+                                aidar.aidarType === 'letter'||aidar.aidarType === 'writeWorld'" appearance="outline"
+                                     floatLabel="always"
+                                     class="w-100-p">
+                                    VIDEO AIDAR :
+                                    <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                           style="display:none;"/>
+                                    <button mat-raised-button color="warn" rows="5"
+                                            (click)="addFile('aidar.videoAidar.videoId')" type="button">
+                                        <mat-icon>image</mat-icon>
+                                        {{'Upload' | translate}}
+                                    </button>
+                                    <br>
+                                    <br>
+
+                                    <div *ngIf="aidar.videoAidar.videoId" class="label-box">
+                                        <vg-player class="video-pl mrgn-all-md mrgn-b-lg">
+                                            <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                                                <source [src]="((baseUrl + '/videos/test/' + aidar.videoAidar.videoId))"
+                                                        type="video/mp4">
+                                            </video>
+                                        </vg-player>
+                                    </div>
+                                    <br>
+                                    <br>
+                                </div>
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p"
+                                                *ngIf=" aidar.aidarType === 'letsPlay' || aidar.aidarType === 'testYourself' || aidar.aidarType === 'ability' ">
+                                    <mat-label>{{'TypeGame' | translate}}</mat-label>
+                                    <mat-select matInput placeholder="{{'TypeGame' | translate}}"
+                                                [(ngModel)]="aidar.type"
+                                                name="type"
+                                                rows="5">
+                                        <mat-option *ngFor="let type of aidarTypeGames" [value]="type.code">
+                                            {{type?.displayNameKz}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p"
+                                                *ngIf=" aidar.aidarType === 'letsPlay' || aidar.aidarType === 'testYourself' || aidar.aidarType === 'ability' || aidar.aidarType === 'training'  ">
+                                    <mat-label>Task</mat-label>
+                                    <input matInput placeholder="Task"
+                                           [(ngModel)]="aidar.task"
+                                           name="task"
+                                           required>
+                                </mat-form-field>
+
+                                <div *ngIf="aidar.aidarType == 'training'">
+
+
+
+
+                                    <div appearance="outline" floatLabel="always" class="w-100-p">
+                                        Training photo :
+                                        <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                               style="display:none;"/>
+                                        <button mat-raised-button color="warn" rows="5"
+                                                (click)="addFile('training.image')" type="button">
+                                            <mat-icon>image</mat-icon>
+                                            {{'Upload' | translate}}
+                                        </button>
+                                        <br>
+                                        <br>
+                                        <div *ngIf="aidar.training.imageId" class="label-box">
+                                            <img [src]="((baseUrl + '/aidar/image/' + aidar.training.imageId | secure) | async)">
+                                        </div>
+                                        <br>
+                                        <br>
+                                    </div>
+                                    <div appearance="outline" floatLabel="always" class="w-100-p">
+                                        Training audio :
+                                        <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                               style="display:none;"/>
+                                        <button mat-raised-button color="warn" rows="5"
+                                                (click)="addFile('training.audio')" type="button">
+                                            <mat-icon>headset</mat-icon>
+                                            {{'Upload' | translate}}
+                                        </button>
+                                        <audio *ngIf="aidar.training.audioId" #media id="singleVideo" preload="auto"
+                                               controls>
+                                            <source [src]="((baseUrl + '/videos/test/' + aidar.training.audioId  ))">
+                                        </audio>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div appearance="outline" floatLabel="always" class="w-100-p">
+                                        Training video :
+                                        <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                               style="display:none;"/>
+                                        <button mat-raised-button color="warn" rows="5"
+                                                (click)="addFile('training.videoId', i)" type="button">
+                                            <mat-icon>image</mat-icon>
+                                            {{'Upload' | translate}}
+                                        </button>
+                                        <div *ngIf="aidar.training.videoId" class="label-box">
+                                            <vg-player class="video-pl mrgn-all-md mrgn-b-lg">
+                                                <video [vgMedia]="media" #media id="singleVideo" preload="auto"
+                                                       controls>
+                                                    <source [src]="((baseUrl + '/videos/test/' + aidar.training.videoId))"
+                                                            type="video/mp4">
+                                                </video>
+                                            </vg-player>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                </div>
+
+
+                                <div *ngIf="aidar.type === 'buyn'">
+                                    <div *ngFor="let buynOb of aidar.buyn;let i = index">
+                                        <hr>
+                                        <div appearance="outline" floatLabel="always" class="w-100-p">
+                                            aidar.buyn.imageId
+                                            <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                                   style="display:none;"/>
+                                            <button mat-raised-button color="warn" rows="5"
+                                                    (click)="addFile('aidar.buyn.imageId',i)"
+                                                    type="button">
+                                                <mat-icon>image</mat-icon>
+                                                {{'Upload' | translate}}
+                                            </button>
+                                            <br>
+                                            <br>
+
+                                            <div *ngIf="buynOb.imageId" class="label-box">
+                                                <img
+                                                        [src]="((baseUrl + '/aidar/image/' + buynOb.imageId | secure) | async)">
+                                            </div>
+                                            <br>
+                                            <br>
+                                        </div>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                            <mat-chip-list>
+                                                <mat-chip *ngFor="let text of buynOb.text" [selectable]="selectable"
+                                                          [removable]="removable" (removed)="remove(text,i,'text')">
+                                                    {{text}}
+                                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                                </mat-chip>
+                                                <input placeholder="Letters ..."
+                                                       [matChipInputFor]="chipList"
+                                                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                       [matChipInputAddOnBlur]="addOnBlur"
+                                                       (matChipInputTokenEnd)="add($event,i,'text')">
+                                            </mat-chip-list>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                            <mat-chip-list>
+                                                <mat-chip *ngFor="let text of buynOb.extraText"
+                                                          [selectable]="selectable"
+                                                          [removable]="removable"
+                                                          (removed)="remove(text,i,'extraText')">
+                                                    {{text}}
+                                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                                </mat-chip>
+                                                <input placeholder="Extra Letters ..."
+                                                       [matChipInputFor]="chipList"
+                                                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                       [matChipInputAddOnBlur]="addOnBlur"
+                                                       (matChipInputTokenEnd)="add($event,i,'extraText')">
+                                            </mat-chip-list>
+                                        </mat-form-field>
+                                    </div>
+                                    <button mat-raised-button (click)="addBuyn()" color="accent">
+                                        Add new buyn block
+                                    </button>
+                                </div>
+                                <div *ngIf="aidar.type === 'match'">
+                                    <div *ngFor="let match of aidar.match;let i = index">
+                                        <hr>
+                                        <div appearance="outline" floatLabel="always" class="w-100-p">
+                                            Match photo:
+                                            <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                                   style="display:none;"/>
+                                            <button mat-raised-button color="warn" rows="5"
+                                                    (click)="addFile('aidar.match.imageId',i)"
+                                                    type="button">
+                                                <mat-icon>image</mat-icon>
+                                                {{'Upload' | translate}}
+                                            </button>
+                                            <br>
+                                            <br>
+
+                                            <div *ngIf="match.imageId" class="label-box">
+                                                <img [src]="((baseUrl + '/aidar/image/' + match.imageId | secure) | async)">
+                                            </div>
+                                            <br>
+                                            <br>
+                                        </div>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                            <mat-label>text</mat-label>
+                                            <input matInput placeholder="text"
+                                                   [(ngModel)]="match.text"
+                                                   name="text"
+                                                   required>
+                                        </mat-form-field>
+                                    </div>
+                                    <button mat-raised-button (click)="addMatch()" color="accent">
+                                        addMatch
+                                    </button>
+                                </div>
+                                <div *ngIf="aidar.type === 'pazzle'">
+                                    <div appearance="outline" floatLabel="always" class="w-100-p">
+                                        aidar.buyn.imageId
+                                        <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                               style="display:none;"/>
+                                        <button mat-raised-button color="warn" rows="5"
+                                                (click)="addFile('aidar.pazzle.imageId')"
+                                                type="button">
+                                            <mat-icon>image</mat-icon>
+                                            {{'Upload' | translate}}
+                                        </button>
+                                        <br>
+                                        <br>
+
+                                        <div *ngIf="aidar.pazzle.imageId" class="label-box">
+                                            <img
+                                                    [src]="((baseUrl + '/aidar/image/' + aidar.pazzle.imageId | secure) | async)">
+                                        </div>
+                                        <br>
+                                        <br>
+                                    </div>
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-label>aidar.pazzle.question</mat-label>
+                                        <input matInput placeholder="text"
+                                               [(ngModel)]="aidar.pazzle.question"
+                                               name="text"
+                                               required>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let text of aidar.pazzle.text" [selectable]="selectable"
+                                                      [removable]="removable" (removed)="remove(text,0,'pazzle.text')">
+                                                {{text}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="text ..."
+                                                   [matChipInputFor]="chipList"
+                                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                   [matChipInputAddOnBlur]="addOnBlur"
+                                                   (matChipInputTokenEnd)="add($event,0,'pazzle.text')">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let letter of  aidar.pazzle.letters"
+                                                      [selectable]="selectable"
+                                                      [removable]="removable"
+                                                      (removed)="remove(letter,0,'pazzle.letter')">
+                                                {{letter}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="Letters ..."
+                                                   [matChipInputFor]="chipList"
+                                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                   [matChipInputAddOnBlur]="addOnBlur"
+                                                   (matChipInputTokenEnd)="add($event,0,'pazzle.letter')">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div *ngIf="aidar.type === 'dauystyDauysyz'">
+                                    <div appearance="outline" floatLabel="always" class="w-100-p">
+                                        aidar.buyn.imageId
+                                        <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                               style="display:none;"/>
+                                        <button mat-raised-button color="warn" rows="5"
+                                                (click)="addFile('aidar.pazzleBuyn.imageId')"
+                                                type="button">
+                                            <mat-icon>image</mat-icon>
+                                            {{'Upload' | translate}}
+                                        </button>
+                                        <br>
+                                        <br>
+                                        <!--
+                                                                        <div *ngIf="aidar.pazzleBuyn.imageId" class="label-box">
+                                                                            <img
+                                                                                    [src]="((baseUrl + '/aidar/image/' + aidar?.pazzleBuyn?.imageId | secure) | async)">
+                                                                        </div>-->
+                                        <br>
+                                        <br>
+                                    </div>
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-label>aidar.pazzleBuyn.question</mat-label>
+                                        <input matInput placeholder="text"
+                                               [(ngModel)]="aidar.pazzleBuyn.question"
+                                               name="text"
+                                               required>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let text of aidar.pazzleBuyn.text; let i = index;"
+                                                      class="{{text.color === 'red' ? 'red' : 'blue'}}"
+                                                      [selectable]="selectable"
+                                                      [removable]="removable" (click)="changeColor(i, 'text')"
+                                                      (removed)="remove(text,0,'pazzleBuyn.text')">
+                                                {{text.letter}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="text ..."
+                                                   [matChipInputFor]="chipList"
+                                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                   [matChipInputAddOnBlur]="addOnBlur"
+                                                   (matChipInputTokenEnd)="add($event,0,'pazzleBuyn.text')">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let letter of  aidar.pazzleBuyn.letters; let i = index;"
+                                                      class="{{letter.color === 'red' ? 'red' : 'blue'}}"
+                                                      [selectable]="selectable"
+                                                      [removable]="removable" (click)="changeColor(i, 'letters')"
+                                                      (removed)="remove(letter,0,'pazzleBuyn.letter')">
+                                                &nbsp;{{letter.letter}}&nbsp;
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="Letters ..."
+                                                   [matChipInputFor]="chipList"
+                                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                   [matChipInputAddOnBlur]="addOnBlur"
+                                                   (matChipInputTokenEnd)="add($event,0,'pazzleBuyn.letter')">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+
+                                </div>
+
+
+                                <!--Start saikestenderPhoto-->
+
+
+                                <div *ngIf="aidar.type === 'saikestendirPhoto'">
+                                    <div appearance="outline" floatLabel="always" class="w-100-p">
+                                        Суреттер осында салынуы кажет:
+                                        <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                               style="display:none;"/>
+                                        <button mat-raised-button color="warn" rows="5"
+                                                (click)="addFile('aidar.saikestendirPhoto.images')"
+                                                type="button">
+                                            <mat-icon>image</mat-icon>
+                                            {{'Upload' | translate}}
+                                        </button>
+                                    </div>
+
+                                    <div style="display: flex; margin-top: 50px;">
+                                        <div cdkDropList
+                                             [cdkDropListData]="aidar.saikestendirPhoto.leftSideImages"
+                                             [cdkDropListConnectedTo]="secondList"
+                                             (cdkDropListDropped)="drop($event)"
+                                             style="width: 30%; border: 2px solid;" #firstList="cdkDropList">
+
+                                            <div *ngFor="let img of aidar.saikestendirPhoto.leftSideImages"
+                                                 style="display: block" cdkDrag>
+                                                <img [src]="((baseUrl + '/aidar/image/' + img | secure) | async)">
+                                            </div>
+
+                                        </div>
+
+                                        <div cdkDropList
+                                             [cdkDropListData]="aidar.saikestendirPhoto.rightSideImages"
+                                             [cdkDropListConnectedTo]="firstList"
+                                             (cdkDropListDropped)="drop($event)"
+                                             style="width: 30%; border: 2px solid;" #secondList="cdkDropList">
+
+                                            <div *ngFor="let img of aidar.saikestendirPhoto.rightSideImages"
+                                                 style="display: block" cdkDrag>
+                                                <img [src]="((baseUrl + '/aidar/image/' + img | secure) | async)">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--                        END saikestenderPhoto                   -->
+
+                                <!--                        START SOZ KURA                          -->
+
+                                <div *ngIf="aidar.type === 'sozKura'">
+
+                                    Сойлем енгызыгыз
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-label>aidar.sozKura.stringOrder</mat-label>
+                                        <input matInput placeholder="text"
+                                               [(ngModel)]="aidar.sozKura.text"
+                                               name="text"
+                                               required>
+                                    </mat-form-field>
+                                    <br>
+                                    <br>
+                                </div>
+
+
+                                <!--                        AIDAR BUIN END -->
+
+                                <div *ngIf="aidar.type === 'find'">
+                                    <!--<mat-form-field appearance="outline" floatLabel="always" class="w-100-p">-->
+                                    <!--<mat-label>findWord mainLetter</mat-label>-->
+                                    <!--<input matInput placeholder="mainLetter"-->
+                                    <!--[(ngModel)]="aidar.find.letters"-->
+                                    <!--name="mainLetter"-->
+                                    <!--required>-->
+                                    <!--</mat-form-field>-->
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let letters of aidar?.find?.letters"
+                                                      [selectable]="selectable"
+                                                      [removable]="removable"
+                                                      (removed)="remove(letters,0,'find.letters')">
+                                                {{letters}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="extraLetters ..."
+                                                   [matChipInputFor]="chipList"
+                                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                   [matChipInputAddOnBlur]="addOnBlur"
+                                                   (matChipInputTokenEnd)="add($event,0,'find.letters')">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="aidar.type === 'createWord'">
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-label>createWord mainLetter</mat-label>
+                                        <input matInput placeholder="mainLetter"
+                                               [(ngModel)]="aidar.createWord.mainLetter"
+                                               name="mainLetter"
+                                               required>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let letter of  aidar.createWord.answers"
+                                                      [selectable]="selectable"
+                                                      [removable]="removable"
+                                                      (removed)="remove(letter,0,'createWord.answers')">
+                                                {{letter}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="answers ..."
+                                                   [matChipInputFor]="chipList"
+                                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                   [matChipInputAddOnBlur]="addOnBlur"
+                                                   (matChipInputTokenEnd)="add($event,0,'createWord.answers')">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let letter of  aidar.createWord.extraLetters"
+                                                      [selectable]="selectable"
+                                                      [removable]="removable"
+                                                      (removed)="remove(letter,0,'createWord.extraLetters')">
+                                                {{letter}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="extraLetters ..."
+                                                   [matChipInputFor]="chipList"
+                                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                   [matChipInputAddOnBlur]="addOnBlur"
+                                                   (matChipInputTokenEnd)="add($event,0,'createWord.extraLetters')">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="aidar.type === 'putLetters'">
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-label>aidar.putLetters.text</mat-label>
+                                        <input matInput placeholder="text"
+                                               [(ngModel)]="aidar.putLetters.text"
+                                               name="text"
+                                               required>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let text of aidar.putLetters.extraLetters"
+                                                      [selectable]="selectable"
+                                                      [removable]="removable"
+                                                      (removed)="remove(text,0,'putLetters.extraText')">
+                                                {{text}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="extraLetters ..."
+                                                   [matChipInputFor]="chipList"
+                                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                   [matChipInputAddOnBlur]="addOnBlur"
+                                                   (matChipInputTokenEnd)="add($event,0,'putLetters.extraText')">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="aidar.type === 'boxSorting'">
+
+                                    <div *ngFor="let boxSorting of aidar.boxSorting;let i = index">
+                                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                            <mat-label>boxSorting.code</mat-label>
+                                            <input matInput placeholder="boxSorting.code"
+                                                   [(ngModel)]="boxSorting.code"
+                                                   name="boxSorting.code"
+                                                   required>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                            <mat-label>boxSorting.name</mat-label>
+                                            <input matInput placeholder="text"
+                                                   [(ngModel)]="boxSorting.name"
+                                                   name="boxSorting.name">
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                            <mat-label>boxSorting.letters</mat-label>
+                                            <mat-chip-list>
+                                                <mat-chip *ngFor="let letters of boxSorting.letters"
+                                                          [selectable]="selectable"
+                                                          [removable]="removable"
+                                                          (removed)="remove(letters,i,'boxSorting.letters')">
+                                                    {{letters}}
+                                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                                </mat-chip>
+                                                <input placeholder="text ..."
+                                                       [matChipInputFor]="chipList"
+                                                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                       [matChipInputAddOnBlur]="addOnBlur"
+                                                       (matChipInputTokenEnd)="add($event,i,'boxSorting.letters')">
+                                            </mat-chip-list>
+                                        </mat-form-field>
+                                        <div appearance="outline" floatLabel="always" class="w-100-p">
+                                            Sorting box photo :
+                                            <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                                   style="display:none;"/>
+                                            <button mat-raised-button color="warn" rows="5"
+                                                    (click)="addFile('boxSorting.imageId',i)" type="button">
+                                                <mat-icon>image</mat-icon>
+                                                {{'Upload' | translate}}
+                                            </button>
+                                            <br>
+                                            <br>
+                                            <div *ngIf="boxSorting.imageId" class="label-box">
+                                                <img [src]="((baseUrl + '/aidar/image/' + boxSorting.imageId | secure) | async)">
+                                            </div>
+                                            <br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <button mat-raised-button (click)="addBoxSorting()" color="accent">
+                                        addBoxSorting
+                                    </button>
+                                </div>
+                                <!--                        AIDAR BOX SORTING END -->
+
+                                <!--                        AIDAR BALL WORD START -->
+                                <div *ngIf="aidar.type === 'ball-word'">
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-label>Слово для разгадки</mat-label>
+                                        <input matInput placeholder="Например: сөз" [(ngModel)]="aidar.ballWord.word"
+                                               name="ballWord">
+                                    </mat-form-field>
+                                </div>
+                                <!--                        AIDAR BALL WORD END -->
+
+                                <!--                        AIDAR SYLLABLE LINE START -->
+                                <div *ngIf="aidar.type == 'think-to-find'">
+
+                                    <div *ngFor="let syllableLine of aidar.syllableLine;let i = index">
+
+                                        <div fxLayout="row" fxLayoutAlign="start start" style="margin-bottom: 20px">
+                                            <div fxFlex="50">
+                                                <mat-form-field appearance="outline" floatLabel="always"
+                                                                class="w-100-p">
+                                                    <mat-label>Слоги</mat-label>
+
+                                                    <mat-chip-list>
+                                                        <mat-chip *ngFor="let syllable of syllableLine.syllables"
+                                                                  [selectable]="selectable"
+                                                                  [removable]="removable"
+                                                                  (removed)="remove(syllable,i,'syllableLine.syllable')">
+                                                            {{syllable}}
+                                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                                        </mat-chip>
+                                                        <input placeholder="text ..."
+                                                               [matChipInputFor]="chipList"
+                                                               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                               [matChipInputAddOnBlur]="addOnBlur"
+                                                               (matChipInputTokenEnd)="add($event,i,'syllableLine.syllable')">
+                                                    </mat-chip-list>
+                                                </mat-form-field>
+                                            </div>
+                                            <div fxFlex="50" fxLayout="row">
+                                                <div fxFlex="50" fxLayoutAlign="center center">
+                                              <span [style.background]="syllableLine.color"
+                                                    [cpToggle]="true"
+                                                    [cpDialogDisplay]="'inline'"
+                                                    [cpCancelButton]="true"
+                                                    [(colorPicker)]="syllableLine.color"></span>
+                                                </div>
+                                                <div fxFlex="50" fxLayoutAlign="center center">
+                                                    <div [style.background]="syllableLine.color"
+                                                         class="color-container"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button mat-raised-button (click)="addSyllableLine()" color="accent">
+                                        Добавить слово
+                                    </button>
+
+                                </div>
+                                <!--                        AIDAR SYLLABLE LINE END -->
+
+                                <!--                        AIDAR FLOWERS WORD START -->
+                                <div *ngIf="aidar.type == 'flowers-word'">
+                                    <div *ngFor="let flowersWord of aidar.flowersWords; let i = index">
+                                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                            <mat-label>Слово для разгадки</mat-label>
+                                            <input matInput placeholder="Например: Сәуір" [ngModel]="flowersWord"
+                                                   (change)="changeFlowerWord($event, i)" [name]="'flowersWord-' + i">
+                                        </mat-form-field>
+                                    </div>
+                                    <button mat-raised-button (click)="addFlowersWord()" color="accent">
+                                        Добавить слово
+                                    </button>
+                                </div>
+                                <!--                        AIDAR FLOWERS WORD END -->
+
+                                <!--                        AIDAR SYLLABLE CONSTRUCTOR START -->
+                                <div *ngIf="aidar.type == 'syllable-constructor'">
+                                    <div *ngFor="let syllableConstructor of aidar.syllableConstructors;let i = index">
+                                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                            <mat-label>Слоги</mat-label>
+
+                                            <mat-chip-list>
+                                                <mat-chip *ngFor="let syllable of syllableConstructor.syllables"
+                                                          [selectable]="selectable"
+                                                          [removable]="removable"
+                                                          (removed)="remove(syllable,i,'syllableConstructor.syllable')">
+                                                    {{syllable}}
+                                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                                </mat-chip>
+                                                <input placeholder="syllables ..."
+                                                       [matChipInputFor]="chipList"
+                                                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                       [matChipInputAddOnBlur]="addOnBlur"
+                                                       (matChipInputTokenEnd)="add($event,i,'syllableConstructor.syllable')">
+                                            </mat-chip-list>
+                                        </mat-form-field>
+                                    </div>
+                                    <button mat-raised-button (click)="addSyllableConstructor()" color="accent">
+                                        Добавить слово
+                                    </button>
+                                </div>
+                                <!--                        AIDAR SYLLABLE CONSTRUCTOR END -->
+                                <!--                        AIDAR WRONGWORD START -->
+
+                                <div *ngIf="aidar.type == 'wrongWord'">
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+
+                                        <mat-chip-list>
+
+                                            <mat-chip *ngFor="let letter of  aidar.wrongWord.words"
+                                                      [selectable]="selectable"
+                                                      [removable]="removable"
+                                                      (removed)="remove(letter,0,'wrongWord.words')">
+                                                {{letter}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="words ..."
+                                                   [matChipInputFor]="chipList"
+                                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                   [matChipInputAddOnBlur]="addOnBlur"
+                                                   (matChipInputTokenEnd)="add($event,0,'wrongWord.words')">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let letter of  aidar.wrongWord.wrongWords"
+                                                      [selectable]="selectable"
+                                                      [removable]="removable"
+                                                      (removed)="remove(letter,0,'wrongWord.wrongWords')">
+                                                {{letter}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="wrongWords ..."
+                                                   [matChipInputFor]="chipList"
+                                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                   [matChipInputAddOnBlur]="addOnBlur"
+                                                   (matChipInputTokenEnd)="add($event,0,'wrongWord.wrongWords')">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+
+                                </div>
+                                <!--                        AIDAR WRONG WORDS END -->
+                                <div *ngIf="aidar.type == 'oddImagesText'">
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-label>text</mat-label>
+                                        <input matInput placeholder="text"
+                                               [(ngModel)]="aidar.oddImagesText.text"
+                                               name="text"
+                                               required>
+                                    </mat-form-field>
+                                    <div appearance="outline" floatLabel="always" class="w-100-p">
+                                        Text audioId :
+                                        <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                               style="display:none;"/>
+                                        <button mat-raised-button color="warn" rows="5"
+                                                (click)="addFile('oddImagesText.audioId')" type="button">
+                                            <mat-icon>headset</mat-icon>
+                                            {{'Upload' | translate}}
+                                        </button>
+                                        <br>
+                                        <br>
+                                        <audio *ngIf="aidar.oddImagesText.audioId" #media id="singleVideo"
+                                               preload="auto"
+                                               controls>
+                                            <source [src]="((baseUrl + '/videos/test/' + aidar.oddImagesText.audioId  ))">
+                                        </audio>
+                                        <br>
+                                        <br>
+                                    </div>
+
+
+                                    <div *ngFor="let oddImageText of aidar.oddImagesText.oddImages;let i = index">
+                                        <div appearance="outline" floatLabel="always" class="w-100-p"
+                                             style="margin-left: 2%">
+                                            oddImageText image :
+                                            <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                                   style="display:none;"/>
+                                            <button mat-raised-button color="warn" rows="5"
+                                                    (click)="addFile('oddImagesText.image',i)" type="button">
+                                                <mat-icon>image</mat-icon>
+                                                {{'Upload' | translate}}
+                                            </button>
+                                            <br>
+
+                                            <br>
+                                            <div class="label-box" *ngIf="oddImageText.imageId">
+                                                <img [src]="((baseUrl + '/aidar/image/' + oddImageText.imageId | secure) | async)">
+                                                <br>
+                                                <br>
+                                            </div>
+                                            <div appearance="outline" floatLabel="always" class="w-100-p">
+                                                oddImageText audioId :
+                                                <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                                       style="display:none;"/>
+                                                <button mat-raised-button color="warn" rows="5"
+                                                        (click)="addFile('oddImagesText.audio',i)" type="button">
+                                                    <mat-icon>headset</mat-icon>
+                                                    {{'Upload' | translate}}
+                                                </button>
+                                                <br>
+                                                <br>
+                                                <audio *ngIf="aidar.oddImagesText.audioId" #media id="singleVideo"
+                                                       preload="auto" controls>
+                                                    <source [src]="((baseUrl + '/videos/test/' + aidar.oddImagesText.audioId  ))">
+                                                </audio>
+                                            </div>
+                                            <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                                <mat-label>Answer</mat-label>
+                                                <mat-select matInput placeholder="Answer"
+                                                            [(ngModel)]="oddImageText.answer"
+                                                            name="pageId"
+                                                            rows="5">
+                                                    <mat-option [value]="true">
+                                                        ДА
+                                                    </mat-option>
+                                                    <mat-option [value]="false">
+                                                        НЕТ
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                    </div>
+
+                                    <button class="mrgn-all-xs" style="margin-bottom: 20px!important;
+                                                    margin-top: -10px!important" mat-raised-button
+                                            (click)="addOddImagesText()"
+                                            color="accent">ADD ODD IMAGE
+                                    </button>
+
+                                    <!--                        oddImages WORDS END -->
+                                </div>
+                                <!--                        oddImages WORDS START -->
+
+
+                                <!--                        AIDAR WRONG WORDS END -->
+                                <div *ngIf="aidar.type == 'oddImages'">
+                                    <div *ngFor="let oddImage of aidar.oddImages;let i = index">
+                                        <div appearance="outline" floatLabel="always" class="w-100-p"
+                                             style="margin-left: 2%">
+                                            oddImages image :
+                                            <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                                   style="display:none;"/>
+                                            <button mat-raised-button color="warn" rows="5"
+                                                    (click)="addFile('oddImages.image',i)" type="button">
+                                                <mat-icon>image</mat-icon>
+                                                {{'Upload' | translate}}
+                                            </button>
+                                            <br>
+                                            <br>
+                                            <div class="label-box" *ngIf="oddImage.imageId">
+                                                <img [src]="((baseUrl + '/aidar/image/' + oddImage.imageId | secure) | async)">
+                                                <br>
+                                                <br>
+                                            </div>
+                                            <div appearance="outline" floatLabel="always" class="w-100-p">
+                                                oddImages audioId :
+                                                <input id="fileUpload" name="fileUpload" type="file" accept="{{accept}}"
+                                                       style="display:none;"/>
+                                                <button mat-raised-button color="warn" rows="5"
+                                                        (click)="addFile('oddImages.audio',i)" type="button">
+                                                    <mat-icon>headset</mat-icon>
+                                                    {{'Upload' | translate}}
+                                                </button>
+                                                <br>
+                                                <br>
+                                                <div class="label-box" *ngIf="oddImage.audioId">
+                                                    audio upload
+                                                    <br>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                                <mat-label>Answer</mat-label>
+                                                <mat-select matInput placeholder="Answer"
+                                                            [(ngModel)]="oddImage.answer"
+                                                            name="pageId"
+                                                            rows="5">
+                                                    <mat-option [value]="true">
+                                                        ДА
+                                                    </mat-option>
+                                                    <mat-option [value]="false">
+                                                        НЕТ
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                    </div>
+
+                                    <button class="mrgn-all-xs" style="margin-bottom: 20px!important;
+                        margin-top: -10px!important" mat-raised-button (click)="addOddImage()"
+                                            color="accent">ADD ODD IMAGE
+                                    </button>
+
+                                    <!--                        oddImages WORDS END -->
+                                </div>
+                                <!--                        oddImages WORDS START -->
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- / CONTENT -->
+
+            </div>
+            <!-- / CONTENT CARD -->
+        </div>
+    </mat-dialog-content>
+
+   <!-- <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+        <button
+                mat-button class="save-button"
+                (click)="matDialogRef.close([applicationBook])"
+                aria-label="SAVE">Save
+        </button>
+    </div>-->
+</div>
+

@@ -1,0 +1,25 @@
+.task {
+    background-color: #FFECB3;
+    border: 6px solid #FFCC00;
+    padding: 1% 0%;
+    color: #1A237E;
+    margin: 10px 0;
+    font-size: 25px;
+}
+
+.label-box2 {
+    width: 200px;
+    height: 200px;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: move;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: none;
+}

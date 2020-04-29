@@ -1,0 +1,33 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+<div style="margin: 50px 50px 20px; position: relative">
+    <div class="main-container" #mainDiv>
+        <mat-grid-list cols="6" rowHeight="2:2">
+            <mat-grid-tile *ngFor="let letter of letters">
+                <section class="stage">
+                    <figure class="ball" (click)="ballClicked(letter)"
+                            [ngStyle]="{'background': letter.selecting ?
+                            'radial-gradient(circle at 50px 50px, #DD5145, #2D323E)' :
+                            'radial-gradient(circle at 50px 50px, #5789D2, #2D323E)',
+                            'color': letter.selecting ? '#fff' : '#111'}">
+                        <div class="rect-child"> {{letter.originalValue}}</div>
+                        <span class="shadow"></span>
+                    </figure>
+                </section>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
+
+<div class="text-center hidden-word">
+    <p>{{hiddenWord}}</p>
+</div>

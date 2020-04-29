@@ -1,0 +1,39 @@
+<div class="gene-login gene-session pad-y-xl">
+    <div fxLayout="row" fxLayoutAlign="center start">
+        <div fxLayout="column" fxFlex.xl="540px" fxFlex.lg="540px" fxFlex.md="540px" fxFlex.sm="540px" fxFlex.xs="100">
+            <mat-card class="gene-login-wrapper">
+                <div>
+                    <div fxLayout="column" fxLayoutAlign="center center mrgn-b-md">
+                        <div class="login-logo justify-content">
+                            <img src="assets/img/bbook4.png" style="width: 200px;height: 130px">
+                            <h5>Өзіңіздің жеке мәліметтеріңізді енгізіңіз!</h5>
+                        </div>
+                    </div>
+                    <form [formGroup]="loginForm">
+                        <div fxLayout="column" fxLayoutAlign="start stretch">
+                            <mat-form-field floatLabel="always" class="w-100-p">
+                                <mat-label>Логин</mat-label>
+                                <input matInput placeholder="Логин" type="text" name="email" required
+                                       formControlName="idn">
+                            </mat-form-field>
+                            <mat-form-field floatLabel="always" class="w-100-p">
+                                <mat-label>Кұпия сөз</mat-label>
+                                <input matInput placeholder="Кұпия сөз" type="password" name="password" required
+                                       formControlName="password">
+                            </mat-form-field>
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <div fxLayout="column">
+                                    <mat-checkbox class="remember-me">Еске сақтау</mat-checkbox>
+                                </div>
+                                <span fxFlex></span>
+                                <div><a [routerLink]="['/session/forgot-password']">Құпия сөзді ұмыттыңызба?</a></div>
+                            </div>
+                            <button class="primary-bg" mat-raised-button (click)="login()" [disabled]="!loginForm.valid">Кіру</button>
+                            <p class="text-center">Сізде аккаунт жоқ па? <a [routerLink]="['/session/register']" class="primary-text">Тіркелу үшін осы жерді басыңыз</a></p>
+                        </div>
+                    </form>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+.task {
+    background-color: #FFECB3;
+    border: 6px solid #FFCC00;
+    padding: 1% 0%;
+    color: #1A237E;
+    margin: 10px 0;
+    font-size: 25px;
+}
+////////////////////////////////////////
+.label-box {
+    width: 200px;
+    height: 200px;
+    //border: solid 1px #ccc;
+    cursor: move;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: transparent;
+    border-radius: 4px;
+    z-index: 1;
+
+}
+.mat-grid-title{
+    height: 300px;
+}

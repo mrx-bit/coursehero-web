@@ -1,0 +1,184 @@
+<div id="products" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent"
+             fxLayout="column" fxLayoutAlign="center center"
+             fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-md-0"
+                 fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    wb_iridescent
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                     {{'Aidar' | translate}}
+                </span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <div class="search-wrapper mx-32 mx-md-0">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>search</mat-icon>
+                    <input (keyup)="getAllAidarBySearch()" [(ngModel)]="searchString" #filter
+                           placeholder="{{'Search_Aidar' | translate}}">
+                </div>
+            </div>
+            <!-- / SEARCH -->
+
+            <!-- ADD BUTTON -->
+            <!--[routerLink]="'/app/bbook/aidar/new/' + book.id"-->
+            <button mat-raised-button
+                    class="add-product-button fuse-white mt-24 mt-md-0" (click)="newAidar(book.id)">
+                <span>{{'Add_Aidar' | translate}}</span>
+            </button>
+            <button mat-raised-button
+                    (click)="report()"
+                    class="add-product-button fuse-white mt-24 mt-md-0">
+                <span>Report</span>
+            </button>
+            <!-- / ADD BUTTON -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <mat-table class="products-table"
+                       #table [dataSource]="aidarCustom"
+                       matSort
+                       [@animateStagger]="{value:'50'}"
+                       fusePerfectScrollbar>
+
+                <ng-container matColumnDef="order">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Order' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <input matInput type="number" [(ngModel)]="row.aidar.order" (change)="changeOrder(row.aidar)"/>
+                        <!--<p class="text-truncate">{{aidar.order}}</p>-->
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Name' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <p class="text-truncate">{{row.aidar.name}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!--                <ng-container matColumnDef="image">-->
+                <!--                    <mat-header-cell *matHeaderCellDef></mat-header-cell>-->
+                <!--                    <mat-cell *matCellDef="let product">-->
+                <!--                        <img class="product-image"-->
+                <!--                             *ngIf="product.featuredImageId" [alt]="product.name"-->
+                <!--                             [src]="product.images[product.featuredImageId].url"/>-->
+                <!--                        <img *ngIf="!product.featuredImageId"-->
+                <!--                             [src]="'assets/images/ecommerce/product-image-placeholder.png'">-->
+                <!--                    </mat-cell>-->
+                <!--                </ng-container>-->
+
+                <ng-container matColumnDef="description">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Description' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <p class="text-truncate">{{row.aidar.description}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="bookId">
+                    <mat-header-cell *matHeaderCellDef fxHide mat-sort-header
+                                     fxShow.gt-md>{{'BookId' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" fxHide fxShow.gt-md>
+                        <p class="category text-truncate">
+                            {{book.name}}
+
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="pageId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide
+                                     fxShow.gt-xs>{{'contentId' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" fxHide fxShow.gt-xs>
+                        <p class="price text-truncate">
+                            {{getContentName(row.aidar.contentId)}}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="backgroundImageSize">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide
+                                     fxShow.gt-xs>{{'backgroundImageSize' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" fxHide fxShow.gt-xs>
+                        <p class="price text-truncate">
+                            {{row.backgroundImageSize}} Kb
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="contentSize">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide
+                                     fxShow.gt-xs>{{'contentSize' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" fxHide fxShow.gt-xs>
+                        <p class="price text-truncate">
+                            {{row.contentSize}} Kb
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="buttons">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
+                        <div fxFlex="row" fxLayoutAlign="end center">
+                            <!--<button mat-button color="accent" matTooltip="Edit" aria-label="Answers blank" [routerLink]="'/app/bbook/aidar/' + aidar.id + '/' + book.id">-->
+                            <button mat-button color="accent" matTooltip="Edit" aria-label="Answers blank" (click)="openEdit(row.aidar.id,book.id)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-button color="warn" matTooltip="Delete" aria-label="Answers blank"
+                                    (click)="disableAidar(row.aidar)">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+
+                <!--                <ng-container matColumnDef="type">-->
+                <!--                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>{{'BBook.Aidar.Type' | translate}}</mat-header-cell>-->
+                <!--                    <mat-cell *matCellDef="let aidar" fxHide fxShow.gt-xs>-->
+                <!--                        <p class="price text-truncate">-->
+                <!--                            {{aidar.type}}-->
+                <!--                        </p>-->
+                <!--                    </mat-cell>-->
+                <!--                </ng-container>-->
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                <mat-row *matRowDef="let row; columns: displayedColumns;"
+                         class="aidar"
+                         matRipple>
+                    <!--                    (click)="directTo(aidar.id, book.id)"-->
+                </mat-row>
+
+            </mat-table>
+
+            <mat-paginator (change)="changeTableList($event)"
+                           [length]="paginationTotalElements"
+                           [pageIndex]="page"
+                           [pageSize]="size"
+                           (page)="changeTableList($event)"
+                           [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

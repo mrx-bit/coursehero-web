@@ -1,0 +1,35 @@
+<mat-card>
+    <div class="gene-card-title">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxLayout="column">
+                <h3>Book Information</h3>
+            </div>
+            <span fxFlex></span>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+    <div class="gene-card-content">
+        <mat-tab-group [selectedIndex]="index" (selectedTabChange)="selectedTabChange($event)">
+            <mat-tab label="book-info">
+                <div class="pad-t-md pad-b-md">
+                    <book-info [book]="book" [pageType]="status" (savedBook)="book = $event"></book-info>
+                </div>
+            </mat-tab>
+            <mat-tab label="book-page">
+                <div class="pad-t-md pad-b-md">
+                    <book-page [book]="book" *ngIf="index == 1"></book-page>
+                </div>
+            </mat-tab>
+            <mat-tab label="book-content">
+                <div class="pad-t-md pad-b-md">
+                    <ms-content-crud [book]="book" *ngIf="index == 2"></ms-content-crud>
+                </div>
+            </mat-tab>
+            <mat-tab label="aidar">
+                <div class="pad-t-md pad-b-md">
+                    <aidar [book]="book" *ngIf="index == 3"></aidar>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</mat-card>

@@ -1,0 +1,143 @@
+<!--<div class="videoStatic">-->
+<!--<div class="video-player-wrap">-->
+<!--<vg-player class="video-pl mrgn-all-md mrgn-b-lg">-->
+<!--<video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>-->
+<!--<source [src]="((baseUrl + '/videos/test/' + aidar?.imageId  ))" type="video/mp4">-->
+<!--</video>-->
+<!--</vg-player>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<div class="aidarlar">
+
+    <mat-grid-list *ngIf="!isMobile && !isIpadPro && !isIpad" cols="2" rowHeight="520px">
+        <mat-grid-tile *ngFor="let aidar of videoAidars"
+                       [colspan]="1"
+                       [rowspan]="1">
+            <div class="video">
+
+                <mat-card style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                    <mat-card-title>
+                        <div fxLayout="row" fxLayoutAlign="start center" class="logo">
+                            <img [src]="((baseUrl + '/aidar/image/' + aidar.imageId | secure) | async)" alt="img13"
+                                 width="50" height="50"/>
+                            <div class="nameOfAidar">
+                                <h2>{{aidar.name}}</h2>
+                            </div>
+                        </div>
+                    </mat-card-title>
+                    <div fxLayout="column" fxLayoutAlign="start center">
+                        <vg-player class="video-pl mrgn-all-md mrgn-b-lg">
+                            <video style="cursor: pointer;" [routerLink]="'/app/bbook/content-page/'+ aidar.id"
+                                   [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                                <source [src]="((baseUrl + '/videos/test/' + aidar.videoAidar.videoId))"
+                                        type="video/mp4">
+                            </video>
+                        </vg-player>
+                        <div class="video-description">
+                            {{aidar.description.substring(0, 50)}} ...
+                        </div>
+                    </div>
+                </mat-card>
+
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+    <!--<div *ngIf="isMobile || isIpadPro || isIpad">-->
+    <!--<div fxLayout="row" fxLayoutAlign="center center" *ngFor="let aidar of videoAidars">-->
+    <!--<div class="video">-->
+    <!--<mat-card style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"-->
+    <!--[routerLink]="'/app/bbook/content-page/'+ aidar.id">-->
+    <!--<mat-card-title>-->
+    <!--<div fxLayout="row" fxLayoutAlign="start center" class="logo">-->
+    <!--<img [src]="((baseUrl + '/aidar/image/' + aidar.imageId | secure) | async)" alt="img13"-->
+    <!--width="50" height="50"/>-->
+    <!--<div class="nameOfAidar">-->
+    <!--<b *ngIf="isMobile" style="font-size: 14px;">{{aidar.name}}</b>-->
+    <!--<h2 *ngIf="isIpad || isIpadPro">{{aidar.name}}</h2>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</mat-card-title>-->
+    <!--<div fxLayout="column" fxLayoutAlign="start center">-->
+    <!--<vg-player class="video-pl mrgn-all-md mrgn-b-lg">-->
+    <!--<video style="cursor: pointer;" [routerLink]="'/app/bbook/content-page/'+ aidar.id"-->
+    <!--[vgMedia]="media" #media id="singleVideo" preload="auto" controls>-->
+    <!--<source [src]="((baseUrl + '/videos/test/' + aidar.videoAidar.videoId))"-->
+    <!--type="video/mp4">-->
+    <!--</video>-->
+    <!--</vg-player>-->
+    <!--<div class="video-description">-->
+    <!--<span *ngIf="isMobile"-->
+    <!--style="font-size: 12px;">{{aidar.description.substring(0, 35)}} ... </span>-->
+    <!--<span *ngIf="isIpad || isIpadPro" style="font-size: 20px;">{{aidar.description.substring(0, 45)}} ... </span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</mat-card>-->
+
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <div *ngFor="let aidar of aidars"  >
+
+        <div fxFlex="50" *ngIf="!(aidar.aidarType === 'talkingPhoto') && !(aidar.aidarType === 'letter') && !(aidar.aidarType === 'writeWorld')">
+                <mat-card [routerLink]="'/app/bbook/content-page/'+ aidar.id" >
+
+                    <mat-card-title>
+                        <div fxLayout="row" fxLayoutAlign="start center" class="logo">
+                            <img [src]="((baseUrl + '/aidar/image/' + aidar.imageId | secure) | async)" alt="img13"
+                                 width="50" height="50"/>
+                            <div class="nameOfAidar">
+                                <h2>{{aidar.name}}</h2>
+                            </div>
+                        </div>
+                    </mat-card-title>
+                    <div>
+                        <div class="text-center  mat-grey-50"
+                             *ngIf="aidar && aidar.aidarType == 'training'">
+                            <ms-training-aidar [aidar]="aidar"></ms-training-aidar>
+                        </div>
+                        <div  class="text-center  mat-grey-50" *ngIf="aidar">
+                            <app-odd-img *ngIf="aidar && aidar.type == 'oddImages'" [aidar]="aidar"></app-odd-img>
+                            <app-flowers-word *ngIf="aidar && aidar.type == 'flowers-word'"
+                                              [aidar]="aidar"></app-flowers-word>
+                            <app-think-to-find *ngIf="aidar && aidar.type == 'think-to-find'"
+                                               [aidar]="aidar"></app-think-to-find>
+                            <app-ball-word *ngIf="aidar && aidar.type == 'ball-word'"
+                                           [aidar]="aidar"></app-ball-word>
+                            <app-syllable-constructor *ngIf="aidar && aidar.type == 'syllable-constructor'"
+                                                      [aidar]="aidar"></app-syllable-constructor>
+                            <!--<ms-odd-img-audio *ngIf="aidar && aidar.type == 'oddImagesText'"-->
+                            <!--[aidar]="aidar"></ms-odd-img-audio>-->
+                            <app-buyn *ngIf="aidar && aidar.type == 'buyn'" [aidar]="aidar"></app-buyn>
+                            <img *ngIf="aidar && aidar.type == 'oddImagesText'"
+                                 src="../../../../../assets/utilImages/Component.jpg"/>
+                            <app-create-word *ngIf="aidar && aidar.type == 'createWord'"
+                                             [aidar]="aidar"></app-create-word>
+                            <app-letters *ngIf="aidar && aidar.type == 'boxSorting'" [aidar]="aidar"></app-letters>
+                            <app-put-letter *ngIf="aidar && aidar.type == 'putLetters'"
+                                            [aidar]="aidar"></app-put-letter>
+                            <app-question-image *ngIf="aidar && aidar.type == 'pazzle'"
+                                                [aidar]="aidar"></app-question-image>
+                            <app-games *ngIf="aidar && aidar.type == 'match'" [aidar]="aidar"></app-games>
+                            <app-wrong-word *ngIf="aidar && aidar.type == 'wrongWord'"
+                                            [aidar]="aidar"></app-wrong-word>
+                            <div class="card-Description"
+                                 *ngIf="aidar && (aidar.aidarType !== 'videoAidar' && aidar.aidarType !== 'talkingPhoto' && aidar.aidarType !== 'letter' && aidar.aidarType !== 'writeWorld')">
+                                {{aidar.description}}
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-card>
+            </div>
+
+    </div>
+</div>
+
+
+
+

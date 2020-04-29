@@ -1,0 +1,84 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+        <div class="message-box error" *ngIf="msgs">
+            {{msgs}}
+        </div>
+        <form [formGroup]="choiceValueForm">
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>code</mat-label>
+                    <mat-icon matSuffix class="secondary-text">code</mat-icon>
+                    <input matInput name="code" formControlName="code" required>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Наименование</mat-label>
+                    <mat-icon matSuffix class="secondary-text">name</mat-icon>
+                    <input name="name" formControlName="name" matInput required>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Наименование на русском языке</mat-label>
+                    <mat-icon matSuffix class="secondary-text">displayNameRu</mat-icon>
+                    <input name="displayNameRu" formControlName="displayNameRu" matInput required>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Наименование на казахском языке</mat-label>
+                    <mat-icon matSuffix class="secondary-text">displayNameKz</mat-icon>
+                    <input name="displayNameKz" formControlName="displayNameKz" matInput required>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Наименование на английском язык</mat-label>
+                    <mat-icon matSuffix class="secondary-text">displayNameEn</mat-icon>
+                    <input name="displayNameEn" formControlName="displayNameEn" matInput required>
+                </mat-form-field>
+            </div>
+
+        </form>
+    </div>
+    <mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+        <button *ngIf="!newValue"
+                mat-button
+                class="mr-8"
+                (click)="dialogRef.close(['delete',choiceValueForm])"
+                aria-label="Delete"
+                matTooltip="Delete">
+            Удалить
+        </button>
+
+        <button *ngIf="newValue"
+                mat-button
+                class="save-button"
+                (click)="saveValues()"
+                [disabled]="choiceValueForm.invalid"
+                aria-label="ADD">
+            Добавить
+        </button>
+
+        <button *ngIf="!newValue"
+                mat-button
+                class="save-button"
+                (click)="dialogRef.close(['save',choiceValueForm])"
+                [disabled]="choiceValueForm.invalid"
+                aria-label="SAVE">
+            Сохранить
+        </button>
+    </mat-dialog-actions>
+</div>

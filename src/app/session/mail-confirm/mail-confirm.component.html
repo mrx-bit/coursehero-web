@@ -1,0 +1,40 @@
+<div class="gene-login gene-session" style="padding-top: 6rem !important;">
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <mat-card class="gene-login-wrapper" style="width: 30%;">
+            <div id="mail-confirm-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+                <div *ngIf="!showError" class="mail-confirm-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+                    <div class="logo">
+                        <mat-icon class="mat-accent s-96">email</mat-icon>
+                    </div>
+
+                    <div class="title">Пошта расталды!</div>
+
+                    <div class="subtitle">
+                        <p>Сіздің электрондық поштаңыз сәтті расталды!</p>
+                    </div>
+
+                    <div class="message">
+                        <a class="link" [routerLink]="'/session/login'">Кіру</a>
+                    </div>
+                </div>
+                <div *ngIf="showError" class="mail-confirm-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+                    <div class="logo">
+                        <mat-icon class="mat-accent s-96">email</mat-icon>
+                    </div>
+
+                    <div class="title">Пошта расталмады!</div>
+
+                    <div class="subtitle">
+                        <p>Сіздің электрондық поштаңыз расталу кезінде қате орын алды!</p>
+                    </div>
+
+                    <div class="message">
+                        <a class="link" [routerLink]="'/session/login'">Кіру</a>
+                    </div>
+                </div>
+
+            </div>
+        </mat-card>
+    </div>
+</div>

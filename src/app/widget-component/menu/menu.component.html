@@ -1,0 +1,9 @@
+<mat-toolbar color="primary" class="make-toolbar-responsive" style="height: 40px; ">
+    <button style="font-family: Roboto, arial-black, sans-serif!important;" class="mrgn-all-xs" [routerLink]="'/app/bbook/content/'+bookId"  mat-button >{{'Contents' | translate}}</button>
+    <button style="font-family: Roboto, arial-black, sans-serif!important;" class="mrgn-all-xs" [routerLink]="'/dashboard/crm'"  mat-button >{{'My books' | translate}}</button>
+
+    <button style="font-family: Roboto, arial-black, sans-serif !important;"  mat-button class="mrgn-all-xs" [matMenuTriggerFor]='menu'>{{'Aidars' | translate}}</button>
+    <mat-menu #menu="matMenu">
+        <button *ngFor="let type of aidarType" class="menu-item"  mat-menu-item  (click)="selectAidar(type.code)" > {{type.displayNameKz}}</button>
+    </mat-menu>
+</mat-toolbar>

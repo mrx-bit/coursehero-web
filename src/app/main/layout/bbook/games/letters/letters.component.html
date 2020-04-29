@@ -1,0 +1,34 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+<div *ngIf="aidar" style="margin: 3% 0">
+    <div *ngIf="letters" id="all" cdkDropList [cdkDropListConnectedTo]="idList" mat-fab>
+        <button mat-fab style="margin: 1% 1% ; width:70px;height:70px; font-size: 50px" *ngFor="let letter of letters"
+                [cdkDragData]="letter"
+                cdkDrag>{{letter}}
+        </button>
+    </div>
+    <mat-grid-list cols="{{aidar.boxSorting.length}}" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let box of aidar.boxSorting;let i = index">
+            <div class="label-box2" id="{{box.code}}" cdkDropList style="background-color: transparent;"
+                 [cdkDropListConnectedTo]="idList"
+                 (cdkDropListDropped)="drop($event,i)">
+                <img style="background-color: transparent"
+                     [src]="((baseUrl + '/videos/test/' + box.imageId | secure) | async)" alt="">
+                <br>
+                <span>{{box.name}}</span>
+            </div>
+
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+

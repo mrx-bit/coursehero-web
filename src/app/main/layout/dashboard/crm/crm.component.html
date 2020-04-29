@@ -1,0 +1,59 @@
+<div fxLayout="row" fxLayoutAlign="space-around center" class="gene-mediav2">
+    <!--<div fxFlex.gt-md="100" fxFlex.gt-sm="100" fxFlex="100" *ngIf="bookResponse">-->
+    <mat-card>
+        <div class="gene-card-content">
+            <div class="gallery-grid-wrap">
+                <div style="text-align: center" *ngIf="bookResponse.accessBook.length <=0">
+                    <h4>{{'Uncurrencies Books' | translate}}</h4>
+                </div>
+                <div style="text-align: center" *ngIf="bookResponse.accessBook.length > 0">
+                    <h4>{{'Currencies Books' | translate}}</h4>
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+                    <div class="grid clearfix" fxFlex="{{isIpadPro || isIpad ? 45 : !isMobile ? 30 : 100}}"
+                         *ngFor="let b of bookResponse.accessBook">
+                        <figure class="effect-ruby" style="width: 100%;" (click)="selectAccessBook(b.id)">
+                            <img [src]="((baseUrl + '/aidar/image/' + b.imageId | secure) | async)" alt="img13"/>
+                            <figcaption>
+                                <h2><span>{{b.name}}</span></h2>
+                                <p>{{b.description}}</p>
+                                <a href="javascript:void(0)">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+    <hr>
+    <mat-card>
+        <div class="gene-card-content">
+            <div class="gallery-grid-wrap">
+                <div style="text-align: center" *ngIf="bookResponse.otherBooks.length <=0">
+                    <h4>{{'Uncurrencies Books' | translate}}</h4>
+                </div>
+
+                <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+                    <div class="grid clearfix" fxFlex="{{isIpadPro || isIpad ? 45 : !isMobile ? 30 : 100}}"
+                         *ngFor="let b of bookResponse.otherBooks">
+
+                        <figure class="effect-ruby" style="width: 100%;" (click)="selectOtherBook(b.id)">
+                            <div fxLayout="row" style="padding-right: 1px;" fxLayoutAlign="end start">
+                                <!--<div fxFlex="{{isMobile ? 72 : 83}}"></div>-->
+                                <img src="./assets/img/soon_kz.png">
+                            </div>
+                            <br>
+                            <img [src]="((baseUrl + '/aidar/image/' + b.imageId | secure) | async)" alt="img13"/>
+                            <figcaption>
+                                <h2><span>{{b.name}}</span></h2>
+                                <p>{{b.description}}</p>
+                                <a href="javascript:void(0)">View more</a>
+                            </figcaption>
+                        </figure>
+                        <!--class="{{isMobile ? 'icon-soon-mobile' : 'icon-soon'}}"-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>

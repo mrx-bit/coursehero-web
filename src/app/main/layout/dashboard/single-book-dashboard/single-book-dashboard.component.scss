@@ -1,0 +1,17 @@
+.single-book {
+  background-image: url("../../../../../assets/img/new_home_Alippe.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: scroll;
+}
+.aidar{
+  background-color: rgba(0,0,0,0);
+  box-shadow: 0 0 0 0;
+}
+
+::ng-deep  .example{
+  background: #707880;
+  font-size: 14px;
+  margin-top: 0px!important;
+}

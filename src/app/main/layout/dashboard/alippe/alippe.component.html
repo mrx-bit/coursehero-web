@@ -1,0 +1,79 @@
+<div class="aidarlar">
+    <div class="container" fxLayout="row wrap">
+        <div fxFlex="{{!isMobile ? 50 : 100}}" *ngFor="let aidar of aidars"
+             style="width: 50%;height: 50%"
+             [routerLink]="'/app/bbook/content-page/'+ aidar.id" class="cursor-pointer">
+            <div class="video">
+                <mat-card style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                    <mat-card-title>
+                        <div fxLayout="row" fxLayoutAlign="start center" class="logo">
+                            <img *ngIf="aidar && aidar.imageId" [src]="((baseUrl + '/aidar/image/' + aidar?.imageId | secure) | async)"
+                                 width="50" height="50"/>
+                            <div class="nameOfAidar">
+                                <h2 *ngIf="aidars.length === 1">{{aidar.name}}</h2>
+                                <h2 *ngIf="aidars.length === 2">{{aidar.name}}</h2>
+                                <h3 *ngIf="aidars.length === 3">{{aidar.name}}</h3>
+                                <h4 *ngIf="aidars.length >= 4">{{aidar.name}}</h4>
+                            </div>
+                        </div>
+                    </mat-card-title>
+
+                    <div fxLayout="column" fxLayoutAlign="space-around center" style="height: 400px; text-align: center;">
+                        <vg-player *ngIf="aidar.aidarType === 'videoAidar' || aidar.aidarType === 'writeWorld' ||  aidar.aidarType === 'videoAidar' || aidar.aidarType === 'talkingPhoto' ||
+                                    aidar.aidarType === 'letter'  ||
+                                    (aidar.aidarType === 'training' && aidar.training.videoId !== null && aidar.training.videoId !== undefined)">
+                            <video style="cursor: pointer;"
+                                   [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                                <source [src]="((baseUrl + '/videos/test/' + aidar.videoAidar.videoId))">
+                            </video>
+                        </vg-player>
+
+                        <img  *ngIf="(aidar.backgroundImageId === undefined || aidar.backgroundImageId === null) && (aidar.aidarType === 'training' && (aidar.training.videoId === undefined || aidar.training.videoId === null))" class="aidarPicture"
+                             src="/assets/img/training_img.png" />
+
+                        <img *ngIf="(aidar.backgroundImageId !== undefined && aidar.backgroundImageId !== null) && (aidar.aidarType === 'training' && (aidar.training.videoId === undefined || aidar.training.videoId === null))" class="aidarPicture"
+                             [src]="((baseUrl + '/aidar/image/' + aidar?.backgroundImageId | secure) | async)"/>
+
+                        <!--<img [src]="((baseUrl + '/aidar/image/' + aidar.training?.imageId | secure) | async)" alt="img13"/>-->
+                        <img *ngIf="(aidar.backgroundImageId === undefined || aidar.backgroundImageId === null) && (aidar.type == 'oddImages'
+                         || aidar.type == 'ball-word'  || aidar.type == 'oddImagesText' ||  aidar.type == 'match')" class="aidarPicture"
+                             src="/assets/img/Component.jpg"/>
+
+                        <img *ngIf="(aidar.backgroundImageId !== undefined && aidar.backgroundImageId !== null) && (aidar.type == 'oddImages'
+                         || aidar.type == 'ball-word'  || aidar.type == 'oddImagesText' ||  aidar.type == 'match'  )" class="aidarPicture"
+                             [src]="((baseUrl + '/aidar/image/' + aidar?.backgroundImageId | secure) | async)"/>
+
+                        <img *ngIf="(aidar.backgroundImageId === undefined || aidar.backgroundImageId === null) && (aidar.type == 'flowers-word'
+                       || aidar.type == 'createWord' || aidar.type == 'boxSorting' || aidar.type == 'pazzle' || aidar.type == 'wrongWord' || aidar.type == 'find' || aidar.type === 'dauystyDauysyz')" class="aidarPicture"
+                             src="/assets/img/testYourself.png"/>
+
+                        <img *ngIf="(aidar.backgroundImageId !== undefined && aidar.backgroundImageId !== null) && (aidar.type == 'flowers-word'
+                       || aidar.type == 'createWord' || aidar.type == 'boxSorting' || aidar.type == 'pazzle' || aidar.type == 'wrongWord' || aidar.type == 'find' || aidar.type === 'dauystyDauysyz')" class="aidarPicture"
+                             [src]="((baseUrl + '/aidar/image/' + aidar?.backgroundImageId | secure) | async)"/>
+
+                        <img *ngIf="(aidar.backgroundImageId === undefined || aidar.backgroundImageId === null) && (aidar.type == 'think-to-find'
+                        || aidar.type == 'syllable-constructor' || aidar.type == 'buyn' || aidar.type == 'putLetters')" class="aidarPicture"
+                             src="/assets/img/ability.png"/>
+
+                        <img *ngIf="(aidar.backgroundImageId !== undefined && aidar.backgroundImageId !== null) && (aidar.type == 'think-to-find'
+                        || aidar.type == 'syllable-constructor' || aidar.type == 'buyn' || aidar.type == 'putLetters')" class="aidarPicture"
+                             [src]="((baseUrl + '/aidar/image/' + aidar?.backgroundImageId | secure) | async)"/>
+
+                        <div class="video-description footer">
+                            <span *ngIf="aidars.length === 1"> {{aidar.description?.substring(0, 90)}} ... </span>
+                            <span *ngIf="aidars.length === 2"> {{aidar.description?.substring(0, 75)}} ... </span>
+                            <span *ngIf="aidars.length === 3"> {{aidar.description?.substring(0, 40)}} ... </span>
+                            <span *ngIf="aidars.length >= 4"> {{aidar.description?.substring(0, 30)}} ... </span>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

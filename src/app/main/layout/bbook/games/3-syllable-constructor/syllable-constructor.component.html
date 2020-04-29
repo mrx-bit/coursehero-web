@@ -1,0 +1,42 @@
+<div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+    <div fxFlex="10" fxFlex.xs="20" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+        <img src="/assets/img/oiyn_icon.png" style="width: 95px; height: 90px; margin-right: -35%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+    </div>
+    <div fxLayoutAlign="start center" fxFlex="50" fxFlex.xs="67" class="task">
+        <img src="/assets/img/sound_for_game.png" style="width: 20px; height: 20px; margin-left: 7%; margin-right: 2%; z-index: 1; cursor: pointer;" (click)="playAudio(aidar.taskAudioId)">
+        <b>{{aidar.task}}</b>
+    </div>
+    <div fxFlex="20" fxFlex.xs="5"></div>
+</div>
+
+<div style="margin: 5% 0">
+    <div cdkDropList
+         [cdkDropListData]="syllables"
+         [cdkDropListConnectedTo]="evens" style="text-align: center">
+        <button mat-stroked-button color="primary" class="syllables"
+                *ngFor="let syllable of syllables;let i = index"
+                cdkDrag
+                [cdkDragData]="syllable">
+            {{syllable}}
+        </button>
+    </div>
+
+    <div style="margin: 5% 10% ; position: relative">
+        <div class="main-container" #mainDiv>
+            <div *ngFor="let word of words; let i = index" class="syllable-container">
+                <button
+                        mat-stroked-button
+                        *ngFor="let w of word.displayShow; let j = index"
+                        id="{{i + '-' + j}}"
+                        cdkDropList
+                        (cdkDropListDropped)="drop($event, i, j)"
+                        [cdkDropListConnectedTo]="evens"
+                        [ngStyle]="{'background-color': w.correct ? '#DD5145' : '#F5F5F5',
+                            'color': w.correct ? '#fff' : '#111'}">
+                    {{w.value}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

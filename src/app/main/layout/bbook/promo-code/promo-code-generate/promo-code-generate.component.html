@@ -1,0 +1,22 @@
+<div class="popup-card-width add-new-user" style="width: 100%!important;">
+    <mat-toolbar matDialogTitle class="mat-primary">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-dialog-content>
+        <mat-form-field class="mrgn-b-sm">
+            <input matInput type="text" [(ngModel)]="countPromo" class="form-control" placeholder="Count">
+        </mat-form-field>
+    </mat-dialog-content>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+        <button
+                mat-button class="save-button"
+                (click)="matDialogRef.close(['generate', countPromo])"
+                aria-label="generate"> generate
+        </button>
+    </div>
+</div>
