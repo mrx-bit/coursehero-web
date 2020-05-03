@@ -30,11 +30,12 @@ import {WidgetComponentModule} from '../../widget-component/widget-component.mod
 import {TranslateModule} from '@ngx-translate/core';
 import {SecurePipe} from '../../Shared/pipes/secure.pipe';
 import {SafePipeModule} from 'safe-pipe';
+import { ChildComponent } from './child/child.component';
 
 
 
 @NgModule({
-    declarations: [UserProfileComponent, SecurePipe],
+    declarations: [UserProfileComponent, SecurePipe, ChildComponent],
     imports: [ LayoutRoutingModule,
         MatIconModule,
         MatButtonModule,

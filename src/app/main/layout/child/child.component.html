@@ -1,0 +1,112 @@
+<div fxLayout="row" fxLayoutAlign="start">
+    <div fxFlex.gt-md="100" fxFlex.gt-sm="100" fxFlex="100">
+        <div class="child-content">
+            <mat-card class="info-card">
+                <div>
+                    <h3>Общая информация</h3>
+                </div>
+                <div>
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>ФИО</mat-label>
+                            <mat-icon matSuffix class="secondary-text">name</mat-icon>
+                            <input matInput placeholder="ФИО">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>Дата рождения</mat-label>
+                            <mat-icon matSuffix class="secondary-text">date</mat-icon>
+                            <input matInput placeholder="Дата рождения">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                            <mat-label>Позиция ребенка</mat-label>
+                            <mat-select matInput placeholder="Позиция ребенка">
+                                <mat-option>
+                                    1 позиция
+                                </mat-option>
+                                <mat-option>
+                                    2 позиция
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                            <mat-label>Патологии</mat-label>
+                            <mat-select matInput placeholder="Патологии">
+                                <mat-option>
+                                    1 патология
+                                </mat-option>
+                                <mat-option>
+                                    2 патология
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                            <mat-label>Инвалидность</mat-label>
+                            <mat-select matInput placeholder="Инвалидность">
+                                <mat-option>
+                                    1 инвалидность
+                                </mat-option>
+                                <mat-option>
+                                    2 инвалидность
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                            <mat-label>Интересы</mat-label>
+                            <mat-select matInput placeholder="Интересы">
+                                <mat-option>
+                                    1 интерес
+                                </mat-option>
+                                <mat-option>
+                                    2 интерес
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Регистрация</h3>
+                </div>
+                <div>
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>Имя пользователя</mat-label>
+                            <mat-icon matSuffix class="secondary-text">username</mat-icon>
+                            <input matInput placeholder="Имя пользователя">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>Пароль</mat-label>
+                            <mat-icon matSuffix class="secondary-text">password</mat-icon>
+                            <input matInput placeholder="Пароль">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>Подтверждение пароля</mat-label>
+                            <mat-icon matSuffix class="secondary-text">password</mat-icon>
+                            <input matInput placeholder="Подтверждение пароля">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end center" >
+                    <button mat-raised-button color="accent"  matTooltip="Save">
+                        Сохранить
+                        <mat-icon>save</mat-icon>
+                    </button>&nbsp;&nbsp;
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

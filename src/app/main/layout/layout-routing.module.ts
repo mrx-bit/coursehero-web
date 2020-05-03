@@ -2,6 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {ChatComponent} from './chat/chat/chat.component';
+import {ChildComponent} from './child/child.component';
 
 export const LayoutRoutes: Routes = [
 
@@ -25,6 +26,10 @@ export const LayoutRoutes: Routes = [
     {
         path: 'user-profile/:userId',
         component: UserProfileComponent
+    },
+    {
+        path: 'child',
+        component: ChildComponent
     },
     {
         path: 'chat',
