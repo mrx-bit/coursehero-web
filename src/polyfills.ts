@@ -35,7 +35,7 @@ import 'core-js/es6/weak-map';
 import 'core-js/es6/set';
 import 'core-js/es6/reflect';
 import 'core-js/client/shim';
-import "core-js/shim";
+import 'core-js/shim';
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 import 'classlist.js';  // Run `npm install --save classlist.js`.
@@ -49,13 +49,12 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
 
-
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
 
 (window as any).process = {
-  env: { DEBUG: undefined },
+    env: {DEBUG: undefined},
 };
 
 /* ngx-charts required polyfill ie11 */
@@ -68,12 +67,12 @@ import 'core-js/es7/reflect';
  * Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
  */
 // import 'intl';  // Run `npm install --save intl`.
-import 'intl'; 
+import 'intl';
 import 'intl/locale-data/complete.js';
 import 'intl/locale-data/jsonp/en.js';
 
-if (typeof SVGElement.prototype.contains == 'undefined') {
-	SVGElement.prototype.contains = HTMLDivElement.prototype.contains;
+if (typeof SVGElement.prototype.contains === 'undefined') {
+    SVGElement.prototype.contains = HTMLDivElement.prototype.contains;
 }
 
 (window as any).global = window;
@@ -86,6 +85,6 @@ import 'core-js/es7/object';
 import 'core-js/es6/reflect';
 
 if (!Element.prototype.matches) {
-  Element.prototype.matches = (<any>Element.prototype).msMatchesSelector ||
-    Element.prototype.webkitMatchesSelector;
+    Element.prototype.matches = (<any>Element.prototype).msMatchesSelector ||
+        Element.prototype.webkitMatchesSelector;
 }

@@ -13,7 +13,8 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import {animate, AnimationBuilder, AnimationPlayer, style} from '@angular/animations';
-import {ObservableMedia} from '@angular/flex-layout';
+import {MediaChange, MediaObserver} from '@angular/flex-layout';
+
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
@@ -97,7 +98,6 @@ export class FuseSidebarComponent implements OnInit, OnDestroy {
      * @param {FuseConfigService} _fuseConfigService
      * @param {FuseMatchMediaService} _fuseMatchMediaService
      * @param {FuseSidebarService} _fuseSidebarService
-     * @param {ObservableMedia} _observableMedia
      * @param {Renderer2} _renderer
      */
     constructor(
@@ -107,7 +107,7 @@ export class FuseSidebarComponent implements OnInit, OnDestroy {
         private _fuseConfigService: FuseConfigService,
         private _fuseMatchMediaService: FuseMatchMediaService,
         private _fuseSidebarService: FuseSidebarService,
-        private _observableMedia: ObservableMedia,
+        private _mediaObserver: MediaObserver,
         private _renderer: Renderer2
     ) {
         // Set the defaults
@@ -309,7 +309,7 @@ export class FuseSidebarComponent implements OnInit, OnDestroy {
             .subscribe(() => {
 
                 // Get the active status
-                const isActive = this._observableMedia.isActive(this.lockedOpen);
+                const isActive = this._mediaObserver.isActive(this.lockedOpen);
 
                 // If the both status are the same, don't act
                 if (this._wasActive === isActive) {
