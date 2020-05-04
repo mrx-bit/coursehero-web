@@ -1,5 +1,5 @@
 export class ServiceCommonConstant {
-    public static baseUrl = '/jms';
+    public static baseUrl = '/api';
     public static recotoolModuleUrl = ServiceCommonConstant.baseUrl + '/bilgen-recotool';
     public static algirModuleUrl = ServiceCommonConstant.baseUrl + '/bilgen-algir';
     public static bbookModuleUrl = ServiceCommonConstant.baseUrl + '/bilgen-bbook';

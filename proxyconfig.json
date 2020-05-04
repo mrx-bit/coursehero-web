@@ -1,9 +1,9 @@
 [
   {
     "context": [
-      "/jms"
+      "/api"
     ],
-    "target": "http://localhost:8765",
+    "target": "http://localhost:9292",
     "secure": false,
     "changeOrigin": true
   }

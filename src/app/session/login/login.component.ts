@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.loginForm = this._formBuilder.group({
-            idn: ['', Validators.required],
+            email: ['', Validators.required],
             password: ['', Validators.required]
         });
     }
@@ -44,23 +44,27 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     // when email and password is correct, user logged in.
     login(): void {
-        this.authService.login(this.idn.value, this.password.value).pipe(takeUntil(this._unsubscribeAll)).subscribe(({token, user}) => {
-            this.localStorageManagement(token, user);
-            this._router.navigate(['']);
+        this.authService.login(this.email.value, this.password.value).subscribe(res => {
+            this.localStorageManagement(res.headers.get('authorization'));
+            this.authService.getUserInfo().subscribe(user => {
+                localStorage.setItem('user', JSON.stringify(user));
+
+                console.log(user)
+                this._router.navigate(['']);
+            })
         }, () => {
             this.bilgenUtils.displayMessage('Қате мәлімет еңгіздіңіз!');
         });
     }
 
-    localStorageManagement(token, user): void {
+    localStorageManagement(token): void {
         localStorage.removeItem('token');
         localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('isLoggedIn', 'true');
     }
 
-    get idn(): FormControl {
-        return this.loginForm.get('idn') as FormControl;
+    get email(): FormControl {
+        return this.loginForm.get('email') as FormControl;
     }
 
     /**

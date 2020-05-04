@@ -19,16 +19,24 @@ export class SessionDetails {
 })
 export class AuthService extends BaseService {
 
-    private readonly BASE_URL = ServiceCommonConstant.baseUrl + '/auth';
+    private readonly BASE_URL = ServiceCommonConstant.baseUrl ;
     private readonly ADMIN_URL = ServiceCommonConstant.adminModuleUrl;
 
     constructor(http: HttpClient, private router: Router) {
         super(http, null, 'AuthService');
     }
+    private httpOptions(): HttpHeaders  {
+        return new HttpHeaders({
+            'Authorization': localStorage.getItem('token')
+        });
+    };
 
-    login(username: string, password: string): Observable<any> {
-        return this.http.post(`${this.BASE_URL}/login/`, {username, password}).pipe(
-            map(response => this.processData(response, 'login')));
+    getUserInfo() {
+        return this.http.get<any>(this.BASE_URL + '/users/currentUser', {headers: this.httpOptions()});
+    }
+
+    login(email: string, password: string): Observable<any> {
+        return this.http.post(`${this.BASE_URL}/auth`, {email, password}, {observe: 'response', responseType: 'text'});
     }
 
     register(registerForm: any): Observable<any> {
