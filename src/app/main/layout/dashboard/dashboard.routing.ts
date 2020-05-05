@@ -7,6 +7,13 @@ import {VideoContentComponent} from './video-content/video-content.component';
 import {SingleBookDashboardComponent} from './single-book-dashboard/single-book-dashboard.component';
 import {ClassroomComponent} from './classroom/classroom.component';
 import {MyclassComponent} from './myclass/myclass/myclass.component';
+import {FirstPageComponent} from './first-page/first-page.component';
+import {MyCoursesComponent} from './my-courses/my-courses.component';
+import {QuestioningComponent} from './questioning/questioning.component';
+import {SuitableCoursesComponent} from './suitable-courses/suitable-courses.component';
+import {TasksComponent} from './tasks/tasks.component';
+import {NewsAndEventsComponent} from './news-and-events/news-and-events.component';
+import {NewsOrEventsOpenComponent} from './news-and-events/news-or-events-open/news-or-events-open.component';
 
 export const DashboardRoutes: Routes = [
    {
@@ -23,7 +30,7 @@ export const DashboardRoutes: Routes = [
          },
          {
             path: 'crm',
-            component : CrmComponent
+            component : NewsOrEventsOpenComponent
          },
           {
              path: 'crm-detail',
