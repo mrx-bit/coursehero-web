@@ -87,7 +87,7 @@ export class HorizontalLayoutComponent implements OnInit {
             this._serviceMenu.bookId = localStorage.getItem('bookId');
         }
         const browserLang: string = translate.getBrowserLang();
-        translate.use(browserLang.match(/kz|en/) ? browserLang : 'kz');
+        translate.use(browserLang.match(/ru|en/) ? browserLang : 'ru');
     }
 
     ngOnInit() {

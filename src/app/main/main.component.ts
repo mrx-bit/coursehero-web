@@ -30,7 +30,7 @@ export class MainComponent implements OnInit, OnDestroy {
     currentUrl: any;
     root: any = 'ltr';
     layout: any = 'ltr';
-    currentLang: any = 'en';
+    currentLang: any = 'ru';
     customizerIn = false;
     showSettings = false;
     chatpanelOpen = false;

@@ -19,11 +19,11 @@ export class GeneAppComponent {
         private _authService: AuthService
     ) {
         translate.addLangs(['en', 'fr', 'he', 'ru', 'ar', 'zh', 'de', 'es', 'ja', 'ko', 'it', 'hu', 'kz']);
-        translate.setDefaultLang('kz');
+        translate.setDefaultLang('ru');
 
 
         const browserLang: string = translate.getBrowserLang();
-        translate.use(browserLang.match(/kz/) ? browserLang : 'kz');
+        translate.use(browserLang.match(/ru/) ? browserLang : 'ru');
 
         const token = localStorage.getItem('token');
 
