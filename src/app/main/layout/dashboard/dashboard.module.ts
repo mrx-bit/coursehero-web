@@ -44,11 +44,8 @@ import {VideoContentComponent} from './video-content/video-content.component';
 import {BooksService} from '../bbook/core/services/books.service';
 import {LayoutModule} from '../layout.module';
 import {AidarService} from '../bbook/core/services/aidar.service';
-import {SingleBookDashboardComponent} from './single-book-dashboard/single-book-dashboard.component';
-import {ClassroomComponent} from './classroom/classroom.component';
 import {ClassroomService} from '../bbook/core/services/classroom.service';
 import {BookService} from '../bbook/core/services/book.service';
-import {BBookModule} from '../bbook/bbook.module';
 import {MyclassComponent} from './myclass/myclass/myclass.component';
 import { CourseOpenComponent } from './course-open/course-open.component';
 import { LessonOpenComponent } from './lesson-open/lesson-open.component';
@@ -59,6 +56,7 @@ import { SuitableCoursesComponent } from './suitable-courses/suitable-courses.co
 import { TasksComponent } from './tasks/tasks.component';
 import { NewsAndEventsComponent } from './news-and-events/news-and-events.component';
 import { NewsOrEventsOpenComponent } from './news-and-events/news-or-events-open/news-or-events-open.component';
+import {SingleBookDashboardComponent} from './single-book-dashboard/single-book-dashboard.component';
 
 @NgModule({
     declarations: [
@@ -67,9 +65,8 @@ import { NewsOrEventsOpenComponent } from './news-and-events/news-or-events-open
         CrmDetailComponent,
         AlippeComponent,
         VideoContentComponent,
-        SingleBookDashboardComponent,
-        ClassroomComponent,
         MyclassComponent,
+        SingleBookDashboardComponent,
         CourseOpenComponent,
         LessonOpenComponent,
         FirstPageComponent,
