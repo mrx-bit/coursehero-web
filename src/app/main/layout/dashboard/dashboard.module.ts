@@ -57,6 +57,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { NewsAndEventsComponent } from './news-and-events/news-and-events.component';
 import { NewsOrEventsOpenComponent } from './news-and-events/news-or-events-open/news-or-events-open.component';
 import {SingleBookDashboardComponent} from './single-book-dashboard/single-book-dashboard.component';
+import { ProfileParentComponent } from './profile-parent/profile-parent.component';
+import { ProfileChildComponent } from './profile-child/profile-child.component';
 
 @NgModule({
     declarations: [
@@ -76,6 +78,8 @@ import {SingleBookDashboardComponent} from './single-book-dashboard/single-book-
         TasksComponent,
         NewsAndEventsComponent,
         NewsOrEventsOpenComponent,
+        ProfileParentComponent,
+        ProfileChildComponent,
     ],
     imports: [
         CommonModule,
