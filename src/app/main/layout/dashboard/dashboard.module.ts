@@ -57,6 +57,8 @@ import { SuitableCoursesComponent } from './suitable-courses/suitable-courses.co
 import { TasksComponent } from './tasks/tasks.component';
 import { NewsAndEventsComponent } from './news-and-events/news-and-events.component';
 import { NewsOrEventsOpenComponent } from './news-and-events/news-or-events-open/news-or-events-open.component';
+import { ProfileParentComponent } from './profile-parent/profile-parent.component';
+import { ProfileChildComponent } from './profile-child/profile-child.component';
 
 @NgModule({
     declarations: [
@@ -75,6 +77,8 @@ import { NewsOrEventsOpenComponent } from './news-and-events/news-or-events-open
         TasksComponent,
         NewsAndEventsComponent,
         NewsOrEventsOpenComponent,
+        ProfileParentComponent,
+        ProfileChildComponent,
     ],
     imports: [
         CommonModule,
