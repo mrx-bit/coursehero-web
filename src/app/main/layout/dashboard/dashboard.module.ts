@@ -50,6 +50,8 @@ import {ClassroomService} from '../bbook/core/services/classroom.service';
 import {BookService} from '../bbook/core/services/book.service';
 import {BBookModule} from '../bbook/bbook.module';
 import {MyclassComponent} from './myclass/myclass/myclass.component';
+import { CourseOpenComponent } from './course-open/course-open.component';
+import { LessonOpenComponent } from './lesson-open/lesson-open.component';
 
 @NgModule({
     declarations: [
@@ -61,6 +63,8 @@ import {MyclassComponent} from './myclass/myclass/myclass.component';
         SingleBookDashboardComponent,
         ClassroomComponent,
         MyclassComponent,
+        CourseOpenComponent,
+        LessonOpenComponent,
     ],
     imports: [
         CommonModule,

@@ -38,7 +38,7 @@ import {ChoiceAddEditComponent} from './choice/choice-add-edit/choice-add-edit.c
         FuseSidebarModule, MatDividerModule,
     ], providers: [
         ChoiceService,
-        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+        // {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     ],
     exports: [
         ChoiceValueAddEditComponent

@@ -3,7 +3,7 @@
     "context": [
       "/api"
     ],
-    "target": "http://localhost:9292",
+    "target": "http://185.125.46.42:9292",
     "secure": false,
     "changeOrigin": true
   }

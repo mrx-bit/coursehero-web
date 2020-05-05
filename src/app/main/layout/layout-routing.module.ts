@@ -3,6 +3,8 @@ import {NgModule} from '@angular/core';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {ChatComponent} from './chat/chat/chat.component';
 import {ChildComponent} from './child/child.component';
+import {CourseOpenComponent} from './dashboard/course-open/course-open.component';
+import {LessonOpenComponent} from './dashboard/lesson-open/lesson-open.component';
 
 export const LayoutRoutes: Routes = [
 
@@ -30,6 +32,14 @@ export const LayoutRoutes: Routes = [
     {
         path: 'child',
         component: ChildComponent
+    },
+    {
+        path: 'course-open',
+        component: CourseOpenComponent
+    },
+    {
+        path: 'lesson-open',
+        component: LessonOpenComponent
     },
     {
         path: 'chat',
