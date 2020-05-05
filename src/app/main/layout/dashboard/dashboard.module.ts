@@ -52,6 +52,13 @@ import {BBookModule} from '../bbook/bbook.module';
 import {MyclassComponent} from './myclass/myclass/myclass.component';
 import { CourseOpenComponent } from './course-open/course-open.component';
 import { LessonOpenComponent } from './lesson-open/lesson-open.component';
+import { FirstPageComponent } from './first-page/first-page.component';
+import { MyCoursesComponent } from './my-courses/my-courses.component';
+import { QuestioningComponent } from './questioning/questioning.component';
+import { SuitableCoursesComponent } from './suitable-courses/suitable-courses.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { NewsAndEventsComponent } from './news-and-events/news-and-events.component';
+import { NewsOrEventsOpenComponent } from './news-and-events/news-or-events-open/news-or-events-open.component';
 
 @NgModule({
     declarations: [
@@ -65,6 +72,13 @@ import { LessonOpenComponent } from './lesson-open/lesson-open.component';
         MyclassComponent,
         CourseOpenComponent,
         LessonOpenComponent,
+        FirstPageComponent,
+        MyCoursesComponent,
+        QuestioningComponent,
+        SuitableCoursesComponent,
+        TasksComponent,
+        NewsAndEventsComponent,
+        NewsOrEventsOpenComponent,
     ],
     imports: [
         CommonModule,

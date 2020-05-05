@@ -1,0 +1,84 @@
+<div class="header">
+    <h1 class="title">text example</h1>
+    <div class="search" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>search</mat-label>
+            <input matInput name="search" required>
+        </mat-form-field>
+    </div>
+</div>
+
+
+<div class="button-row">
+    <button mat-stroked-button color="primary">Мои курсы</button>
+    <button style="margin-left: 70px" mat-stroked-button >Все курсы</button>
+</div>
+
+<div class="button-row">
+    <button mat-stroked-button>Basic</button>
+    <button style="margin-left: 10px" mat-stroked-button>Basic</button>
+    <button style="margin-left: 10px" mat-stroked-button>Basic</button>
+    <button style="margin-left: 10px" mat-stroked-button>Basic</button>
+</div>
+
+<mat-grid-list cols="3" rowHeight="2:2">
+    <mat-grid-tile>
+        <div class="image-container">
+
+            <h2 class="event">EVENT</h2>
+            <h5 class="event-description">EVENT</h5>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="image-container">
+            <h2 class="event">EVENT</h2>
+            <h5 class="event-description">EVENT</h5>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="image-container">
+            <h2 class="event">EVENT</h2>
+            <h5 class="event-description">EVENT</h5>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="image-container">
+            <h2 class="event">EVENT</h2>
+            <h5 class="event-description">EVENT</h5>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="image-container">
+            <h2 class="event">EVENT</h2>
+            <h5 class="event-description">EVENT</h5>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="image-container">
+            <h2 class="event">EVENT</h2>
+            <h5 class="event-description">EVENT</h5>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="image-container">
+            <h2 class="event">EVENT</h2>
+            <h5 class="event-description">EVENT</h5>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="image-container">
+            <h2 class="event">EVENT</h2>
+            <h5 class="event-description">EVENT</h5>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="image-container">
+            <h2 class="event">EVENT</h2>
+            <h5 class="event-description">EVENT</h5>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-paginator [length]="100"
+               [pageSize]="10"
+               [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

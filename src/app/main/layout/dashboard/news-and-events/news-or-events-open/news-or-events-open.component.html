@@ -1,0 +1,36 @@
+<div style="margin: 20px">
+    <h3>Заголовок</h3>
+    <h3>Подзаголовок</h3>
+    <span style="margin-left: 2%">Дата публикации</span>
+    <span style="margin-left: 54%">Последние новости</span>
+
+
+</div>
+<div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <div style="background-color: #C4C4C4;width: 57%;height: 300px;margin-left: 3%">
+
+        </div>
+        <div style="background-color: #C4C4C4;width: 32%;height: 200px;margin-left: 5%">
+
+        </div>
+    </div>
+    <div style="background-color: #C4C4C4;width: 57%;height: 200px;margin-left: 3%;margin-top: 20px">
+
+    </div>
+</div>
+<p style="margin: 20px">Оставить комментарии</p>
+<div style="margin-left: 20px;width: 90%" fxLayout="row" fxLayoutAlign="start start">
+    <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Комментария</mat-label>
+        <textarea matInput name="search" required></textarea>
+    </mat-form-field>
+</div>
+<button style="margin-left: 80%;margin-bottom: 10px" mat-stroked-button>Опубликовать</button>
+
+<p style="margin: 20px">Комметарий</p>
+<div style="margin: 20px" *ngFor="let comment of comments">
+    <p>Имя: Azamat</p>
+    <p>Комментария: Оставить комментарии</p>
+    <hr>
+</div>
