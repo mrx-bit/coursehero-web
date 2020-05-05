@@ -8,9 +8,6 @@
                     <img src="/assets/img/bbook1.png" [routerLink]="''" style="width: 70px; cursor: pointer;">
                 </div>
 
-
-
-
                 <div fxLayout="row" fxLayoutAlign="end center">
                     <button mat-icon-button class="overflow-visible" (click)="chatMenu()">
                         <mat-icon style="color: white;">email</mat-icon>
@@ -35,7 +32,7 @@
         </mat-toolbar>
 
         <hr style="height:0.8px;border:none;color: lightgrey ;background-color:#333;">
-        <ms-menu *ngIf="_serviceMenu && _serviceMenu.bookId" [bookId]="_serviceMenu.bookId"></ms-menu>
+        <ms-menu ></ms-menu>
 
         <div class="gene-base-container" #scrollContainer>
             <div class="inner-container">

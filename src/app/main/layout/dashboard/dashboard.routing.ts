@@ -15,7 +15,7 @@ import {MyCoursesComponent} from './my-courses/my-courses.component';
 export const DashboardRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'crm',
+        redirectTo: 'main',
         pathMatch: 'full'
     },
     {
@@ -24,10 +24,6 @@ export const DashboardRoutes: Routes = [
             {
                 path: 'saas',
                 component: SaasComponent
-            },
-            {
-                path: 'crm',
-                component: NewsOrEventsOpenComponent
             },
             {
                 path: 'crm-detail',
@@ -70,5 +66,9 @@ export const DashboardRoutes: Routes = [
     {
         path: 'my-courses',
         component: MyCoursesComponent
-    }
+    },
+    {
+        path: 'news',
+        component: NewsOrEventsOpenComponent
+    },
 ];
