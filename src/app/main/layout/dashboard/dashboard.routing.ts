@@ -44,6 +44,10 @@ export const DashboardRoutes: Routes = [
         component: CourseOpenComponent
     },
     {
+        path: 'suitable-courses',
+        component: SuitableCoursesComponent
+    },
+    {
         path: 'main',
         component: FirstPageComponent
     },
